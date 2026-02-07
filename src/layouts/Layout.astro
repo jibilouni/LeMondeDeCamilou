@@ -1,0 +1,80 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Le Monde de Camilou Lorient | Événements, Yoga, Beauté | Coffee Shop",
+  description = "Espace multiservices à Lorient : organisation événements privés (anniversaires, baby shower), cours yoga, prothésie ongulaire, esthétique. Réservation 06 18 91 02 16",
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="fr" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta
+      name="keywords"
+      content="événements Lorient, yoga Lorient, prothésie ongulaire, baby shower, anniversaire enfants, coffee shop, bien-être, esthéticienne, ateliers créatifs"
+    />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="Le Monde de Camilou" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Schema.org for Local Business -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": ["LocalBusiness", "EventVenue"],
+        name: "Le Monde de Camilou",
+        description: description,
+        url: canonicalURL,
+        telephone: "+33618910216",
+        email: "mallamaci.annelaure@gmail.com",
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "20 rue de Carnel",
+          addressLocality: "Lorient",
+          postalCode: "56100",
+          addressCountry: "FR",
+        },
+        sameAs: [
+          "https://www.instagram.com/cafepoussette.lorient",
+          "https://www.facebook.com/lemondedecamilou",
+        ],
+      })}
+    />
+  </head>
+  <body class="bg-background text-gris-texte font-sans antialiased">
+    <slot />
+  </body>
+</html>

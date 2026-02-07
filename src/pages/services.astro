@@ -1,0 +1,1228 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { Image } from "astro:assets";
+import yogaImg from "../assets/images/yoga.png";
+import onglesImg from "../assets/images/ongles.png";
+import esthetiqueImg from "../assets/images/esthetique.png";
+
+// Données structurées Schema.org pour chaque service
+const schemaServices = {
+    "@context": "https://schema.org",
+    "@type": "BeautySalon",
+    name: "Le Monde de Camilou - Services Bien-être",
+    description:
+        "Cours de yoga, prothésie ongulaire et soins esthétiques à Lorient",
+    address: {
+        "@type": "PostalAddress",
+        streetAddress: "20 rue de Carnel",
+        addressLocality: "Lorient",
+        postalCode: "56100",
+        addressCountry: "FR",
+    },
+    telephone: "+33618910216",
+    url: "https://lemondedecamilou.fr/services",
+    hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Services Bien-être",
+        itemListElement: [
+            {
+                "@type": "Offer",
+                itemOffered: {
+                    "@type": "Service",
+                    name: "Cours de Yoga",
+                    description: "Hatha Yoga et Vinyasa Flow pour tous niveaux",
+                },
+            },
+            {
+                "@type": "Offer",
+                itemOffered: {
+                    "@type": "Service",
+                    name: "Prothésie Ongulaire",
+                    description: "Pose gel, semi-permanent, nail art",
+                },
+            },
+            {
+                "@type": "Offer",
+                itemOffered: {
+                    "@type": "Service",
+                    name: "Soins Esthétiques",
+                    description: "Épilation au fil, soins du visage",
+                },
+            },
+        ],
+    },
+};
+---
+
+<Layout
+    title="Yoga, Onglerie & Esthétique Lorient | Services Bien-être Le Monde de Camilou ☎ 06 18 91 02 16"
+    description="Cours de yoga (Hatha & Vinyasa), prothésie ongulaire professionnelle, soins esthétiques (épilation fil, visage) à Lorient. Réservation sur rendez-vous. Tarifs sur demande."
+>
+    <!-- Schema.org -->
+    <script
+        type="application/ld+json"
+        set:html={JSON.stringify(schemaServices)}
+    />
+
+    <Header />
+
+    <main>
+        <!-- Hero Services - Optimisé -->
+        <section
+            class="relative bg-gradient-to-br from-peche-clair/20 via-white to-rose-poudre/20 py-20 px-4 overflow-hidden"
+        >
+            <!-- Animated background shapes -->
+            <div
+                class="absolute top-10 right-10 w-72 h-72 bg-rose-200/20 rounded-full blur-3xl animate-pulse"
+            >
+            </div>
+            <div
+                class="absolute bottom-10 left-10 w-96 h-96 bg-peche-light/30 rounded-full blur-3xl animate-pulse delay-1000"
+            >
+            </div>
+
+            <div class="container mx-auto text-center relative z-10">
+                <nav
+                    class="flex justify-center mb-8 text-sm text-gray-500"
+                    aria-label="Breadcrumb"
+                >
+                    <ol class="flex items-center space-x-2">
+                        <li>
+                            <a
+                                href="/"
+                                class="hover:text-rose-400 transition-colors"
+                                >Accueil</a
+                            >
+                        </li>
+                        <li><span class="text-gray-300">/</span></li>
+                        <li class="font-medium text-rose-400">
+                            Services Bien-être
+                        </li>
+                    </ol>
+                </nav>
+
+                <h1
+                    class="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6 text-gris-texte leading-tight"
+                >
+                    Services Bien-être à Lorient<br />
+                    <span
+                        class="bg-gradient-to-r from-rose-poudre via-rose-400 to-corail-warmth bg-clip-text text-transparent"
+                    >
+                        Yoga · Onglerie · Esthétique
+                    </span>
+                </h1>
+
+                <p
+                    class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-10 leading-relaxed"
+                >
+                    Une parenthèse de <strong>douceur et sérénité</strong> pour prendre
+                    soin de vous au cœur de Lorient. Prestations sur rendez-vous avec
+                    des <strong>professionnelles diplômées</strong>.
+                </p>
+
+                <!-- Trust badges -->
+                <div
+                    class="flex flex-wrap items-center justify-center gap-6 mb-10"
+                >
+                    <div
+                        class="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-5 py-3 rounded-full shadow-md"
+                    >
+                        <svg
+                            class="w-5 h-5 text-green-500"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="font-medium text-gray-700"
+                            >Pros certifiées</span
+                        >
+                    </div>
+                    <div
+                        class="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-5 py-3 rounded-full shadow-md"
+                    >
+                        <svg
+                            class="w-5 h-5 text-rose-500"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="font-medium text-gray-700"
+                            >Produits naturels</span
+                        >
+                    </div>
+                    <div
+                        class="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-5 py-3 rounded-full shadow-md"
+                    >
+                        <svg
+                            class="w-5 h-5 text-blue-500"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="font-medium text-gray-700"
+                            >Cadre chaleureux</span
+                        >
+                    </div>
+                </div>
+
+                <a
+                    href="tel:+33618910216"
+                    class="inline-flex items-center gap-3 bg-gradient-to-r from-rose-400 via-rose-500 to-coral-500 text-white px-10 py-5 rounded-full font-bold text-lg hover:scale-105 hover:shadow-2xl transition-all duration-300"
+                >
+                    <svg
+                        class="w-6 h-6"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                    >
+                        <path
+                            d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+                        ></path>
+                    </svg>
+                    Réserver : 06 18 91 02 16
+                </a>
+            </div>
+        </section>
+
+        <!-- Navigation rapide sticky -->
+        <nav
+            class="bg-white border-b-2 border-rose-100 sticky top-20 z-40 shadow-md"
+            aria-label="Navigation services"
+        >
+            <div class="container mx-auto px-4">
+                <div class="flex justify-center overflow-x-auto">
+                    <a
+                        href="#yoga"
+                        class="group px-8 py-5 text-gris-texte hover:text-rose-500 font-semibold border-b-4 border-transparent hover:border-rose-400 transition-all whitespace-nowrap flex items-center gap-2"
+                    >
+                        <span class="text-2xl">🧘‍♀️</span>
+                        <span>Yoga</span>
+                    </a>
+                    <a
+                        href="#onglerie"
+                        class="group px-8 py-5 text-gris-texte hover:text-rose-500 font-semibold border-b-4 border-transparent hover:border-rose-400 transition-all whitespace-nowrap flex items-center gap-2"
+                    >
+                        <span class="text-2xl">💅</span>
+                        <span>Prothésie Ongulaire</span>
+                    </a>
+                    <a
+                        href="#esthetique"
+                        class="group px-8 py-5 text-gris-texte hover:text-rose-500 font-semibold border-b-4 border-transparent hover:border-rose-400 transition-all whitespace-nowrap flex items-center gap-2"
+                    >
+                        <span class="text-2xl">✨</span>
+                        <span>Esthétique</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Yoga Section - AMÉLIORÉE -->
+        <section id="yoga" class="py-20 md:py-28 bg-white scroll-mt-32">
+            <div class="container mx-auto px-4 lg:px-8">
+                <div
+                    class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
+                >
+                    <div class="order-2 lg:order-1">
+                        <div class="mb-6">
+                            <span
+                                class="inline-block bg-rose-100 text-rose-600 px-4 py-2 rounded-full text-sm font-semibold mb-4"
+                            >
+                                🧘‍♀️ Bien-être · Corps & Esprit
+                            </span>
+                            <h2
+                                class="text-4xl md:text-5xl font-display font-bold mb-6 text-gris-texte"
+                            >
+                                Cours de Yoga <br />
+                                <span class="text-corail-warmth">à Lorient</span
+                                >
+                            </h2>
+                        </div>
+
+                        <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                            Reconnectez-vous à votre <strong
+                                >corps et votre esprit</strong
+                            > dans notre espace zen. Nos cours de yoga s'adaptent
+                            à <strong>tous les niveaux</strong>, du débutant
+                            complet au pratiquant confirmé. Séances en petits
+                            groupes (max 12 personnes) pour un suivi
+                            personnalisé.
+                        </p>
+
+                        <!-- Types de yoga -->
+                        <div class="space-y-6 mb-10">
+                            <div
+                                class="bg-gradient-to-br from-rose-50 to-peche-light/20 p-6 rounded-2xl border-2 border-rose-100 hover:shadow-lg transition-shadow"
+                            >
+                                <h3
+                                    class="font-bold text-xl mb-3 flex items-center gap-3 text-gray-800"
+                                >
+                                    <span class="text-3xl">🧘‍♀️</span>
+                                    <span>Hatha Yoga Doux</span>
+                                </h3>
+                                <p class="text-gray-700 leading-relaxed mb-3">
+                                    Parfait pour <strong
+                                        >débuter en douceur</strong
+                                    >. Postures fondamentales tenues plus
+                                    longtemps, travail sur la respiration
+                                    (pranayama) et relaxation profonde. Idéal
+                                    pour réduire le stress et améliorer la
+                                    souplesse.
+                                </p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span
+                                        class="text-xs bg-white px-3 py-1 rounded-full text-gray-600 font-medium"
+                                        >✓ Débutants bienvenus</span
+                                    >
+                                    <span
+                                        class="text-xs bg-white px-3 py-1 rounded-full text-gray-600 font-medium"
+                                        >✓ Relaxation</span
+                                    >
+                                    <span
+                                        class="text-xs bg-white px-3 py-1 rounded-full text-gray-600 font-medium"
+                                        >✓ Souplesse</span
+                                    >
+                                </div>
+                            </div>
+
+                            <div
+                                class="bg-gradient-to-br from-orange-50 to-peche-light/20 p-6 rounded-2xl border-2 border-orange-100 hover:shadow-lg transition-shadow"
+                            >
+                                <h3
+                                    class="font-bold text-xl mb-3 flex items-center gap-3 text-gray-800"
+                                >
+                                    <span class="text-3xl">🔥</span>
+                                    <span>Vinyasa Flow</span>
+                                </h3>
+                                <p class="text-gray-700 leading-relaxed mb-3">
+                                    Yoga <strong>dynamique et fluide</strong> où les
+                                    postures s'enchaînent au rythme de la respiration.
+                                    Renforce les muscles, améliore l'endurance et
+                                    favorise la concentration. Niveau intermédiaire
+                                    recommandé.
+                                </p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span
+                                        class="text-xs bg-white px-3 py-1 rounded-full text-gray-600 font-medium"
+                                        >✓ Cardio léger</span
+                                    >
+                                    <span
+                                        class="text-xs bg-white px-3 py-1 rounded-full text-gray-600 font-medium"
+                                        >✓ Renforcement</span
+                                    >
+                                    <span
+                                        class="text-xs bg-white px-3 py-1 rounded-full text-gray-600 font-medium"
+                                        >✓ Énergie</span
+                                    >
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Horaires & Infos -->
+                        <div
+                            class="bg-white border-2 border-rose-200 rounded-2xl p-6 mb-8"
+                        >
+                            <h4 class="font-bold text-lg mb-4 text-gray-800">
+                                📅 Horaires des cours
+                            </h4>
+                            <div class="space-y-3">
+                                <div
+                                    class="flex items-center justify-between p-3 bg-rose-50 rounded-lg"
+                                >
+                                    <div>
+                                        <p class="font-semibold text-gray-800">
+                                            Lundi 18h00
+                                        </p>
+                                        <p class="text-sm text-gray-600">
+                                            Hatha Yoga Doux (1h)
+                                        </p>
+                                    </div>
+                                    <span
+                                        class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-bold"
+                                        >Places dispo</span
+                                    >
+                                </div>
+                                <div
+                                    class="flex items-center justify-between p-3 bg-rose-50 rounded-lg"
+                                >
+                                    <div>
+                                        <p class="font-semibold text-gray-800">
+                                            Jeudi 19h00
+                                        </p>
+                                        <p class="text-sm text-gray-600">
+                                            Vinyasa Flow (1h)
+                                        </p>
+                                    </div>
+                                    <span
+                                        class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-bold"
+                                        >Places dispo</span
+                                    >
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-500 mt-4 italic">
+                                💡 Cours limités à 12 personnes · Tapis fournis
+                                · Vestiaire disponible
+                            </p>
+                        </div>
+
+                        <!-- Tarifs sur demande -->
+                        <div
+                            class="bg-gradient-to-r from-rose-100 to-peche-light/40 border-2 border-rose-300 rounded-2xl p-6 mb-8"
+                        >
+                            <h4 class="font-bold text-lg mb-2 text-gray-800">
+                                💰 Tarifs
+                            </h4>
+                            <p class="text-gray-700 mb-3">
+                                Séance à l'unité, cartes 5 ou 10 cours,
+                                abonnement mensuel... <strong
+                                    >Tarifs sur demande</strong
+                                > selon la formule qui vous convient.
+                            </p>
+                            <p class="text-sm text-rose-600 font-semibold">
+                                🎁 Cours découverte offert pour les nouveaux
+                                élèves !
+                            </p>
+                        </div>
+
+                        <!-- Instagram Yoga -->
+                        <div class="mb-8">
+                            <a
+                                href="https://www.instagram.com/cafepoussette.lorient"
+                                target="_blank"
+                                rel="noopener"
+                                class="inline-flex items-center gap-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-4 rounded-2xl font-semibold hover:scale-105 transition-all shadow-lg group"
+                            >
+                                <svg
+                                    class="w-6 h-6"
+                                    fill="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+                                    ></path>
+                                </svg>
+                                <span>Voir nos séances sur Instagram</span>
+                                <svg
+                                    class="w-5 h-5 group-hover:translate-x-1 transition-transform"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                </svg>
+                            </a>
+                            <p class="text-sm text-gray-500 mt-2">
+                                📸 Photos de nos cours, témoignages élèves,
+                                conseils bien-être
+                            </p>
+                        </div>
+
+                        <!-- CTA Réservation -->
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a
+                                href="tel:+33618910216"
+                                class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-rose-400 to-coral-500 text-white px-8 py-4 rounded-full font-bold text-lg hover:scale-105 hover:shadow-xl transition-all"
+                            >
+                                <svg
+                                    class="w-5 h-5"
+                                    fill="currentColor"
+                                    viewBox="0 0 20 20"
+                                >
+                                    <path
+                                        d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+                                    ></path>
+                                </svg>
+                                Réserver mon tapis
+                            </a>
+                            <a
+                                href="/contact?type=yoga"
+                                class="inline-flex items-center justify-center gap-2 bg-white border-2 border-rose-300 text-rose-600 px-8 py-4 rounded-full font-semibold hover:bg-rose-50 transition-all"
+                            >
+                                Plus d'infos
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Image Yoga -->
+                    <div
+                        class="order-1 lg:order-2 relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl group"
+                    >
+                        <Image
+                            src={yogaImg}
+                            alt="Cours de yoga Hatha et Vinyasa au Monde de Camilou à Lorient"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        />
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        >
+                            <div
+                                class="absolute bottom-8 left-8 right-8 text-white"
+                            >
+                                <p class="font-display font-bold text-2xl mb-2">
+                                    Votre moment zen
+                                </p>
+                                <p class="text-sm">
+                                    Cours de yoga dans un espace chaleureux
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Separation élégante -->
+        <div class="container mx-auto px-4">
+            <div class="flex items-center gap-4 my-12">
+                <div
+                    class="flex-1 h-px bg-gradient-to-r from-transparent via-rose-300 to-transparent"
+                >
+                </div>
+                <span class="text-3xl">💅</span>
+                <div
+                    class="flex-1 h-px bg-gradient-to-r from-transparent via-rose-300 to-transparent"
+                >
+                </div>
+            </div>
+        </div>
+
+        <!-- Onglerie Section - AMÉLIORÉE -->
+        <section
+            id="onglerie"
+            class="py-20 md:py-28 bg-gradient-to-b from-white to-gray-50 scroll-mt-32"
+        >
+            <div class="container mx-auto px-4 lg:px-8">
+                <div
+                    class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
+                >
+                    <!-- Image Ongles -->
+                    <div
+                        class="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl group"
+                    >
+                        <Image
+                            src={onglesImg}
+                            alt="Prothésie ongulaire professionnelle, pose gel, semi-permanent et nail art à Lorient"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        />
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        >
+                            <div
+                                class="absolute bottom-8 left-8 right-8 text-white"
+                            >
+                                <p class="font-display font-bold text-2xl mb-2">
+                                    Sublimez vos mains
+                                </p>
+                                <p class="text-sm">
+                                    Nail art personnalisé · Produits premium
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="mb-6">
+                            <span
+                                class="inline-block bg-pink-100 text-pink-600 px-4 py-2 rounded-full text-sm font-semibold mb-4"
+                            >
+                                💅 Prothésiste Ongulaire Diplômée
+                            </span>
+                            <h2
+                                class="text-4xl md:text-5xl font-display font-bold mb-6 text-gris-texte"
+                            >
+                                Prothésie Ongulaire<br />
+                                <span class="text-corail-warmth"
+                                    >& Nail Art</span
+                                >
+                            </h2>
+                        </div>
+
+                        <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                            Sublimez vos mains avec nos prestations d'<strong
+                                >onglerie professionnelle</strong
+                            >. Du semi-permanent classique au nail art le plus
+                            sophistiqué, nous utilisons exclusivement des <strong
+                                >produits de qualité premium</strong
+                            > qui respectent vos ongles naturels.
+                        </p>
+
+                        <!-- Prestations -->
+                        <div class="mb-8">
+                            <h3 class="font-bold text-xl mb-6 text-gray-800">
+                                Nos Prestations
+                            </h3>
+                            <div class="space-y-4">
+                                <div
+                                    class="bg-white p-5 rounded-xl border-2 border-pink-100 hover:shadow-lg transition-all group"
+                                >
+                                    <div
+                                        class="flex items-start justify-between"
+                                    >
+                                        <div class="flex-1">
+                                            <h4
+                                                class="font-semibold text-gray-800 mb-2 flex items-center gap-2"
+                                            >
+                                                <span class="text-xl">💖</span>
+                                                Semi-permanent Mains
+                                            </h4>
+                                            <p
+                                                class="text-sm text-gray-600 leading-relaxed"
+                                            >
+                                                Vernis longue tenue (3
+                                                semaines), séchage UV, finish
+                                                brillant. Large palette de
+                                                couleurs + vernis vegan
+                                                disponibles.
+                                            </p>
+                                        </div>
+                                        <span
+                                            class="ml-4 px-4 py-2 bg-pink-50 text-pink-600 rounded-full text-sm font-bold whitespace-nowrap"
+                                            >Sur devis</span
+                                        >
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="bg-white p-5 rounded-xl border-2 border-pink-100 hover:shadow-lg transition-all group"
+                                >
+                                    <div
+                                        class="flex items-start justify-between"
+                                    >
+                                        <div class="flex-1">
+                                            <h4
+                                                class="font-semibold text-gray-800 mb-2 flex items-center gap-2"
+                                            >
+                                                <span class="text-xl">💎</span>
+                                                Pose Complète Gel / Résine
+                                            </h4>
+                                            <p
+                                                class="text-sm text-gray-600 leading-relaxed"
+                                            >
+                                                Extensions d'ongles naturelles
+                                                ou capsules, modelage gel
+                                                builder, forme personnalisée
+                                                (amande, carré, stiletto...).
+                                            </p>
+                                        </div>
+                                        <span
+                                            class="ml-4 px-4 py-2 bg-pink-50 text-pink-600 rounded-full text-sm font-bold whitespace-nowrap"
+                                            >Sur devis</span
+                                        >
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="bg-white p-5 rounded-xl border-2 border-pink-100 hover:shadow-lg transition-all group"
+                                >
+                                    <div
+                                        class="flex items-start justify-between"
+                                    >
+                                        <div class="flex-1">
+                                            <h4
+                                                class="font-semibold text-gray-800 mb-2 flex items-center gap-2"
+                                            >
+                                                <span class="text-xl">✨</span>
+                                                Remplissage Gel
+                                            </h4>
+                                            <p
+                                                class="text-sm text-gray-600 leading-relaxed"
+                                            >
+                                                Entretien tous les 3-4 semaines,
+                                                lime de la repousse, remplissage
+                                                gel, nouvelle couleur au choix.
+                                            </p>
+                                        </div>
+                                        <span
+                                            class="ml-4 px-4 py-2 bg-pink-50 text-pink-600 rounded-full text-sm font-bold whitespace-nowrap"
+                                            >Sur devis</span
+                                        >
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="bg-white p-5 rounded-xl border-2 border-pink-100 hover:shadow-lg transition-all group"
+                                >
+                                    <div
+                                        class="flex items-start justify-between"
+                                    >
+                                        <div class="flex-1">
+                                            <h4
+                                                class="font-semibold text-gray-800 mb-2 flex items-center gap-2"
+                                            >
+                                                <span class="text-xl">🎨</span>
+                                                Nail Art Personnalisé
+                                            </h4>
+                                            <p
+                                                class="text-sm text-gray-600 leading-relaxed"
+                                            >
+                                                Décorations sur-mesure :
+                                                paillettes, strass, dégradés,
+                                                motifs floraux, french,
+                                                géométrique... Laissez parler
+                                                votre créativité !
+                                            </p>
+                                        </div>
+                                        <span
+                                            class="ml-4 px-4 py-2 bg-pink-50 text-pink-600 rounded-full text-sm font-bold whitespace-nowrap"
+                                            >Variable</span
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Avantages -->
+                        <div
+                            class="bg-gradient-to-br from-pink-50 to-rose-50 border-2 border-pink-200 p-6 rounded-2xl mb-8"
+                        >
+                            <h4
+                                class="font-bold text-lg mb-4 text-gray-800 flex items-center gap-2"
+                            >
+                                <svg
+                                    class="w-5 h-5 text-pink-500"
+                                    fill="currentColor"
+                                    viewBox="0 0 20 20"
+                                >
+                                    <path
+                                        fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                Nos Garanties Qualité
+                            </h4>
+                            <ul class="space-y-2 text-gray-700">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-pink-500 font-bold"
+                                        >✓</span
+                                    >
+                                    <span
+                                        >Dépose offerte pour toute nouvelle pose
+                                        complète</span
+                                    >
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-pink-500 font-bold"
+                                        >✓</span
+                                    >
+                                    <span
+                                        >Vernis vegan & cruelty-free disponibles
+                                        sur demande</span
+                                    >
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-pink-500 font-bold"
+                                        >✓</span
+                                    >
+                                    <span
+                                        >Matériel stérilisé après chaque cliente</span
+                                    >
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-pink-500 font-bold"
+                                        >✓</span
+                                    >
+                                    <span
+                                        >Marques premium : Gelish, OPI, CND
+                                        Shellac</span
+                                    >
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Instagram Ongles -->
+                        <div class="mb-8">
+                            <a
+                                href="https://www.instagram.com/cafepoussette.lorient"
+                                target="_blank"
+                                rel="noopener"
+                                class="inline-flex items-center gap-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-4 rounded-2xl font-semibold hover:scale-105 transition-all shadow-lg group"
+                            >
+                                <svg
+                                    class="w-6 h-6"
+                                    fill="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+                                    ></path>
+                                </svg>
+                                <span>Découvrez nos créations nail art</span>
+                                <svg
+                                    class="w-5 h-5 group-hover:translate-x-1 transition-transform"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                </svg>
+                            </a>
+                            <p class="text-sm text-gray-500 mt-2">
+                                📸 Portfolio nail art, avant/après, inspirations
+                                tendances
+                            </p>
+                        </div>
+
+                        <!-- CTA -->
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a
+                                href="tel:+33618910216"
+                                class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-pink-400 to-rose-500 text-white px-8 py-4 rounded-full font-bold text-lg hover:scale-105 hover:shadow-xl transition-all"
+                            >
+                                <svg
+                                    class="w-5 h-5"
+                                    fill="currentColor"
+                                    viewBox="0 0 20 20"
+                                >
+                                    <path
+                                        d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+                                    ></path>
+                                </svg>
+                                Prendre RDV
+                            </a>
+                            <a
+                                href="/contact?type=ongles"
+                                class="inline-flex items-center justify-center gap-2 bg-white border-2 border-pink-300 text-pink-600 px-8 py-4 rounded-full font-semibold hover:bg-pink-50 transition-all"
+                            >
+                                Demander un tarif
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Separation élégante -->
+        <div class="container mx-auto px-4">
+            <div class="flex items-center gap-4 my-12">
+                <div
+                    class="flex-1 h-px bg-gradient-to-r from-transparent via-rose-300 to-transparent"
+                >
+                </div>
+                <span class="text-3xl">✨</span>
+                <div
+                    class="flex-1 h-px bg-gradient-to-r from-transparent via-rose-300 to-transparent"
+                >
+                </div>
+            </div>
+        </div>
+
+        <!-- Esthetique Section - AMÉLIORÉE -->
+        <section id="esthetique" class="py-20 md:py-28 bg-white scroll-mt-32">
+            <div class="container mx-auto px-4 lg:px-8">
+                <div
+                    class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
+                >
+                    <div class="order-2 lg:order-1">
+                        <div class="mb-6">
+                            <span
+                                class="inline-block bg-purple-100 text-purple-600 px-4 py-2 rounded-full text-sm font-semibold mb-4"
+                            >
+                                ✨ Esthéticienne Professionnelle
+                            </span>
+                            <h2
+                                class="text-4xl md:text-5xl font-display font-bold mb-6 text-gris-texte"
+                            >
+                                Soins Esthétiques<br />
+                                <span class="text-corail-warmth"
+                                    >& Bien-être</span
+                                >
+                            </h2>
+                        </div>
+
+                        <p class="text-lg text-gray-600 mb-10 leading-relaxed">
+                            Révélez votre <strong>beauté naturelle</strong> avec nos
+                            soins visage et épilations expertes. Spécialistes de l'<strong
+                                >épilation au fil</strong
+                            > (technique ancestrale ultra-précise) et des soins du
+                            visage personnalisés, nous vous offrons un moment de détente
+                            absolue dans un cadre intimiste.
+                        </p>
+
+                        <!-- Prestations en cards -->
+                        <div class="grid grid-cols-1 gap-6 mb-10">
+                            <!-- Épilation au fil -->
+                            <div
+                                class="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-2xl shadow-lg border-2 border-purple-100 hover:shadow-xl hover:-translate-y-1 transition-all group"
+                            >
+                                <div class="flex items-start gap-4">
+                                    <div
+                                        class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-3xl flex-shrink-0 group-hover:scale-110 transition-transform shadow-md"
+                                    >
+                                        🧵
+                                    </div>
+                                    <div class="flex-1">
+                                        <h3
+                                            class="font-bold text-xl mb-3 text-gray-800"
+                                        >
+                                            Épilation au Fil
+                                        </h3>
+                                        <p
+                                            class="text-gray-700 mb-4 leading-relaxed"
+                                        >
+                                            Technique ancestrale <strong
+                                                >d'une précision chirurgicale</strong
+                                            > pour le visage. Idéale pour les sourcils,
+                                            lèvre supérieure, menton, joues. Résultat
+                                            net qui dure 3-4 semaines. <span
+                                                class="text-purple-600 font-semibold"
+                                                >Moins agressive que la cire</span
+                                            >, parfaite pour les peaux
+                                            sensibles.
+                                        </p>
+                                        <div class="flex flex-wrap gap-2">
+                                            <span
+                                                class="px-3 py-1 bg-white rounded-full text-xs font-medium text-gray-700"
+                                                >Sourcils</span
+                                            >
+                                            <span
+                                                class="px-3 py-1 bg-white rounded-full text-xs font-medium text-gray-700"
+                                                >Lèvre supérieure</span
+                                            >
+                                            <span
+                                                class="px-3 py-1 bg-white rounded-full text-xs font-medium text-gray-700"
+                                                >Menton</span
+                                            >
+                                            <span
+                                                class="px-3 py-1 bg-white rounded-full text-xs font-medium text-gray-700"
+                                                >Visage complet</span
+                                            >
+                                        </div>
+                                        <p
+                                            class="mt-4 text-purple-600 font-bold"
+                                        >
+                                            Tarif sur devis selon la zone
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Soins Visage -->
+                            <div
+                                class="bg-gradient-to-br from-pink-50 to-rose-50 p-6 rounded-2xl shadow-lg border-2 border-pink-100 hover:shadow-xl hover:-translate-y-1 transition-all group"
+                            >
+                                <div class="flex items-start gap-4">
+                                    <div
+                                        class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-3xl flex-shrink-0 group-hover:scale-110 transition-transform shadow-md"
+                                    >
+                                        ✨
+                                    </div>
+                                    <div class="flex-1">
+                                        <h3
+                                            class="font-bold text-xl mb-3 text-gray-800"
+                                        >
+                                            Soin Visage Éclat
+                                        </h3>
+                                        <p
+                                            class="text-gray-700 mb-4 leading-relaxed"
+                                        >
+                                            Protocole complet sur-mesure : <strong
+                                                >nettoyage profond, gommage
+                                                enzymatique, extraction
+                                                comédons, masque adapté</strong
+                                            > à votre type de peau, massage relaxant,
+                                            sérum hydratant. Peau lumineuse et rebondie
+                                            garantie !
+                                        </p>
+                                        <div class="space-y-2 mb-4">
+                                            <div
+                                                class="flex items-center gap-2 text-sm text-gray-700"
+                                            >
+                                                <svg
+                                                    class="w-4 h-4 text-pink-500"
+                                                    fill="currentColor"
+                                                    viewBox="0 0 20 20"
+                                                >
+                                                    <path
+                                                        fill-rule="evenodd"
+                                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                        clip-rule="evenodd"
+                                                    ></path>
+                                                </svg>
+                                                <span
+                                                    >Durée : 45-60 minutes</span
+                                                >
+                                            </div>
+                                            <div
+                                                class="flex items-center gap-2 text-sm text-gray-700"
+                                            >
+                                                <svg
+                                                    class="w-4 h-4 text-pink-500"
+                                                    fill="currentColor"
+                                                    viewBox="0 0 20 20"
+                                                >
+                                                    <path
+                                                        fill-rule="evenodd"
+                                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                        clip-rule="evenodd"
+                                                    ></path>
+                                                </svg>
+                                                <span
+                                                    >Produits bio & naturels</span
+                                                >
+                                            </div>
+                                            <div
+                                                class="flex items-center gap-2 text-sm text-gray-700"
+                                            >
+                                                <svg
+                                                    class="w-4 h-4 text-pink-500"
+                                                    fill="currentColor"
+                                                    viewBox="0 0 20 20"
+                                                >
+                                                    <path
+                                                        fill-rule="evenodd"
+                                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                        clip-rule="evenodd"
+                                                    ></path>
+                                                </svg>
+                                                <span>Tous types de peaux</span>
+                                            </div>
+                                        </div>
+                                        <p class="text-pink-600 font-bold">
+                                            Tarif sur devis personnalisé
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Avantages -->
+                        <div
+                            class="bg-gradient-to-r from-purple-50 to-pink-50 border-2 border-purple-200 p-6 rounded-2xl mb-8"
+                        >
+                            <p class="text-gray-700 leading-relaxed mb-3">
+                                <svg
+                                    class="w-5 h-5 text-purple-500 inline mr-2"
+                                    fill="currentColor"
+                                    viewBox="0 0 20 20"
+                                >
+                                    <path
+                                        fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                <strong>100% produits naturels</strong> et respectueux
+                                de votre peau pour tous nos soins
+                            </p>
+                            <p class="text-gray-700 leading-relaxed mb-3">
+                                <svg
+                                    class="w-5 h-5 text-purple-500 inline mr-2"
+                                    fill="currentColor"
+                                    viewBox="0 0 20 20"
+                                >
+                                    <path
+                                        fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                <strong>Diagnostic peau offert</strong> avant chaque
+                                soin pour un protocole personnalisé
+                            </p>
+                            <p class="text-gray-700 leading-relaxed">
+                                <svg
+                                    class="w-5 h-5 text-purple-500 inline mr-2"
+                                    fill="currentColor"
+                                    viewBox="0 0 20 20"
+                                >
+                                    <path
+                                        fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                <strong>Cabine privée</strong> climatisée pour votre
+                                confort absolu
+                            </p>
+                        </div>
+
+                        <!-- Instagram Esthétique -->
+                        <div class="mb-8">
+                            <a
+                                href="https://www.instagram.com/cafepoussette.lorient"
+                                target="_blank"
+                                rel="noopener"
+                                class="inline-flex items-center gap-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-4 rounded-2xl font-semibold hover:scale-105 transition-all shadow-lg group"
+                            >
+                                <svg
+                                    class="w-6 h-6"
+                                    fill="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+                                    ></path>
+                                </svg>
+                                <span>Voir nos soins & résultats</span>
+                                <svg
+                                    class="w-5 h-5 group-hover:translate-x-1 transition-transform"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                </svg>
+                            </a>
+                            <p class="text-sm text-gray-500 mt-2">
+                                📸 Avant/après, conseils beauté, routines
+                                skincare
+                            </p>
+                        </div>
+
+                        <!-- CTA -->
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a
+                                href="tel:+33618910216"
+                                class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-purple-400 to-pink-500 text-white px-8 py-4 rounded-full font-bold text-lg hover:scale-105 hover:shadow-xl transition-all"
+                            >
+                                <svg
+                                    class="w-5 h-5"
+                                    fill="currentColor"
+                                    viewBox="0 0 20 20"
+                                >
+                                    <path
+                                        d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+                                    ></path>
+                                </svg>
+                                Réserver un soin
+                            </a>
+                            <a
+                                href="/contact?type=esthetique"
+                                class="inline-flex items-center justify-center gap-2 bg-white border-2 border-purple-300 text-purple-600 px-8 py-4 rounded-full font-semibold hover:bg-purple-50 transition-all"
+                            >
+                                Demander un devis
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Image Esthétique -->
+                    <div
+                        class="order-1 lg:order-2 relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl group"
+                    >
+                        <Image
+                            src={esthetiqueImg}
+                            alt="Soins esthétiques visage, épilation au fil sourcils à Lorient"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        />
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        >
+                            <div
+                                class="absolute bottom-8 left-8 right-8 text-white"
+                            >
+                                <p class="font-display font-bold text-2xl mb-2">
+                                    Révélez votre éclat
+                                </p>
+                                <p class="text-sm">
+                                    Soins personnalisés · Produits naturels
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Global - AMÉLIORÉ -->
+        <section
+            class="py-20 bg-gradient-to-br from-rose-50 via-peche-light/20 to-white"
+        >
+            <div class="container mx-auto px-4 text-center">
+                <h2
+                    class="text-3xl md:text-4xl font-display font-bold mb-6 text-gris-texte"
+                >
+                    Prêt(e) à Réserver Votre Moment Bien-être ?
+                </h2>
+                <p
+                    class="text-lg text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed"
+                >
+                    Besoin d'informations sur nos <strong
+                        >tarifs, disponibilités ou prestations</strong
+                    > ? Notre équipe vous répond <strong>7j/7</strong> par téléphone
+                    ou formulaire.
+                </p>
+                <div
+                    class="flex flex-col sm:flex-row gap-4 justify-center items-center"
+                >
+                    <a
+                        href="tel:+33618910216"
+                        class="inline-flex items-center gap-3 bg-gradient-to-r from-rose-400 to-coral-500 text-white px-10 py-5 rounded-full font-bold text-lg hover:scale-105 hover:shadow-2xl transition-all"
+                    >
+                        <svg
+                            class="w-6 h-6"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                        >
+                            <path
+                                d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+                            ></path>
+                        </svg>
+                        Appeler : 06 18 91 02 16
+                    </a>
+                    <a
+                        href="/contact"
+                        class="inline-flex items-center gap-2 bg-white border-2 border-rose-300 text-rose-600 px-10 py-5 rounded-full font-bold text-lg hover:bg-rose-50 hover:border-rose-400 transition-all"
+                    >
+                        <svg
+                            class="w-5 h-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                            ></path>
+                        </svg>
+                        Formulaire de contact
+                    </a>
+                </div>
+                <p class="text-sm text-gray-500 mt-6">
+                    📍 20 rue de Carnel, 56100 Lorient · 🅿️ Parking gratuit · ♿
+                    Accès PMR
+                </p>
+            </div>
+        </section>
+
+        <!-- Mobile FAB -->
+        <div class="fixed bottom-6 right-6 lg:hidden z-50">
+            <a
+                href="tel:+33618910216"
+                class="flex items-center gap-2 bg-gradient-to-r from-rose-500 to-coral-500 text-white px-6 py-4 rounded-full font-bold shadow-2xl hover:scale-110 transition-transform animate-bounce hover:animate-none"
+                aria-label="Appeler pour réserver"
+            >
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                        d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+                    ></path>
+                </svg>
+                <span class="text-sm font-bold">Réserver</span>
+            </a>
+        </div>
+    </main>
+
+    <Footer />
+</Layout>

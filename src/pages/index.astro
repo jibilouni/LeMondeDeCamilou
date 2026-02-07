@@ -1,0 +1,1110 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import EventCard from "../components/EventCard.astro";
+import ServiceCard from "../components/ServiceCard.astro";
+import TestimonialCard from "../components/TestimonialCard.astro";
+import { Image } from "astro:assets";
+import heroImg from "../assets/images/hero.png";
+import yogaImg from "../assets/images/yoga.png";
+import onglesImg from "../assets/images/ongles.png";
+import esthetiqueImg from "../assets/images/esthetique.png";
+import atelier1Img from "../assets/images/ateliers/atelier-1.png";
+import atelier2Img from "../assets/images/ateliers/atelier-2.png";
+import atelier3Img from "../assets/images/ateliers/atelier-3.png";
+import atelier4Img from "../assets/images/ateliers/atelier-4.png";
+
+// Schema.org pour SEO local
+const schemaOrganization = {
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "EventVenue", "BeautySalon"],
+    name: "Le Monde de Camilou",
+    description:
+        "Espace événements et bien-être à Lorient : location salle, yoga, prothésie ongulaire, soins esthétiques",
+    image: "https://lemondedecamilou.fr/images/hero.jpg",
+    address: {
+        "@type": "PostalAddress",
+        streetAddress: "20 rue de Carnel",
+        addressLocality: "Lorient",
+        postalCode: "56100",
+        addressRegion: "Bretagne",
+        addressCountry: "FR",
+    },
+    geo: {
+        "@type": "GeoCoordinates",
+        latitude: "47.7484",
+        longitude: "-3.3638",
+    },
+    telephone: "+33618910216",
+    email: "mallamaci.annelaure@gmail.com",
+    url: "https://lemondedecamilou.fr",
+    priceRange: "€€",
+    openingHoursSpecification: {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday",
+        ],
+        opens: "09:00",
+        closes: "20:00",
+    },
+    sameAs: [
+        "https://www.instagram.com/cafepoussette.lorient",
+        "https://www.facebook.com/lemondedecamilou",
+    ],
+    aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "4.9",
+        reviewCount: "87",
+    },
+};
+---
+
+<Layout
+    title="Le Monde de Camilou Lorient | Événements, Yoga, Onglerie ☎ 06 18 91 02 16"
+    description="🎉 Location salle événements Lorient (40 pers) · 🧘 Cours yoga · 💅 Prothésie ongulaire · ✨ Soins esthétiques · 20 rue de Carnel 56100 · Devis gratuit 24h ☎ 06 18 91 02 16"
+>
+    <!-- Schema.org -->
+    <script
+        type="application/ld+json"
+        set:html={JSON.stringify(schemaOrganization)}
+    />
+
+    <Header />
+
+    <main>
+        <!-- Hero Section MEGA AMÉLIORÉ -->
+        <section
+            class="relative min-h-[75vh] md:min-h-[80vh] bg-gradient-to-br from-peche-clair/30 via-white to-rose-poudre/20 flex items-center justify-center px-4 overflow-hidden"
+        >
+            <!-- Background Image avec overlay -->
+            <div class="absolute inset-0">
+                <Image
+                    src={heroImg}
+                    alt="Le Monde de Camilou - Espace événements et bien-être Lorient"
+                    class="w-full h-full object-cover opacity-15 mix-blend-multiply"
+                />
+                <div
+                    class="absolute inset-0 bg-gradient-to-br from-peche-light/40 via-white/60 to-rose-poudre-light/40"
+                >
+                </div>
+            </div>
+
+            <!-- Formes décoratives animées -->
+            <div
+                class="absolute top-20 right-10 w-72 h-72 bg-rose-300/20 rounded-full blur-3xl animate-pulse"
+            >
+            </div>
+            <div
+                class="absolute bottom-20 left-10 w-96 h-96 bg-peche-light/30 rounded-full blur-3xl animate-pulse delay-1000"
+            >
+            </div>
+
+            <div class="container mx-auto text-center relative z-10 py-20">
+                <!-- Badge localisation -->
+                <div
+                    class="inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm px-5 py-2 rounded-full mb-6 shadow-lg"
+                >
+                    <svg
+                        class="w-4 h-4 text-rose-500"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                    >
+                        <path
+                            fill-rule="evenodd"
+                            d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="text-sm font-semibold text-gray-700"
+                        >📍 Centre-ville Lorient · 56100</span
+                    >
+                </div>
+
+                <h1
+                    class="text-5xl md:text-6xl lg:text-7xl font-display font-bold mb-6 leading-tight"
+                >
+                    <span class="text-gris-texte">Le Monde de </span><span
+                        class="bg-gradient-to-r from-rose-poudre via-rose-400 to-corail-warmth bg-clip-text text-transparent"
+                        >Camilou</span
+                    >
+                </h1>
+
+                <p
+                    class="text-2xl md:text-3xl font-display font-semibold text-gris-texte mb-4"
+                >
+                    Votre Espace Événements & Bien-être
+                </p>
+
+                <p
+                    class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-10 leading-relaxed"
+                >
+                    <strong>Location de salle privative</strong> (jusqu'à 40 pers)
+                    · <strong>Cours de yoga</strong> · <strong
+                        >Prothésie ongulaire</strong
+                    > · <strong>Soins esthétiques</strong> dans un cadre <span
+                        class="text-rose-600 font-semibold"
+                        >chaleureux au cœur de Lorient</span
+                    >
+                </p>
+
+                <!-- MEGA CTA Téléphone -->
+                <div class="max-w-4xl mx-auto mb-10">
+                    <div
+                        class="bg-white rounded-3xl shadow-2xl p-6 md:p-8 border-4 border-rose-200 mb-6"
+                    >
+                        <p class="text-gray-700 font-semibold mb-4 text-lg">
+                            🔥 <strong
+                                >Besoin d'un devis ou d'une réservation ?</strong
+                            > Appelez-nous maintenant !
+                        </p>
+                        <a
+                            href="tel:+33618910216"
+                            class="group inline-flex items-center justify-center gap-4 bg-gradient-to-r from-green-500 to-green-600 text-white px-12 py-6 rounded-full font-bold text-3xl md:text-4xl hover:scale-105 hover:shadow-2xl transition-all duration-300 w-full md:w-auto animate-pulse hover:animate-none"
+                        >
+                            <svg
+                                class="w-10 h-10 md:w-12 md:h-12 group-hover:rotate-12 transition-transform"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                            >
+                                <path
+                                    d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+                                ></path>
+                            </svg>
+                            <span class="font-display">06 18 91 02 16</span>
+                        </a>
+                        <p class="text-sm text-gray-500 mt-4">
+                            📞 Ouvert 7j/7 · Réponse rapide garantie · Devis
+                            gratuit sous 24h
+                        </p>
+                    </div>
+
+                    <!-- Alternatives -->
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a
+                            href="/contact"
+                            class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-rose-400 to-coral-500 text-white px-8 py-4 rounded-full font-bold text-lg hover:scale-105 hover:shadow-xl transition-all"
+                        >
+                            <svg
+                                class="w-5 h-5"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                                ></path>
+                            </svg>
+                            Formulaire devis gratuit
+                        </a>
+                        <a
+                            href="#evenements"
+                            class="inline-flex items-center justify-center gap-2 bg-white border-2 border-rose-300 text-rose-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-rose-50 transition-all"
+                        >
+                            Découvrir nos services
+                            <svg
+                                class="w-5 h-5"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Trust badges -->
+                <div
+                    class="flex flex-wrap items-center justify-center gap-4 md:gap-8"
+                >
+                    <div
+                        class="flex items-center gap-2 bg-white/90 backdrop-blur-sm px-5 py-3 rounded-full shadow-md"
+                    >
+                        <svg
+                            class="w-5 h-5 text-green-500"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span
+                            class="font-medium text-gray-700 text-sm md:text-base"
+                            >200+ événements réussis</span
+                        >
+                    </div>
+                    <div
+                        class="flex items-center gap-2 bg-white/90 backdrop-blur-sm px-5 py-3 rounded-full shadow-md"
+                    >
+                        <svg
+                            class="w-5 h-5 text-rose-500"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                        >
+                            <path
+                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                            ></path>
+                        </svg>
+                        <span
+                            class="font-medium text-gray-700 text-sm md:text-base"
+                            >4.9/5 avis Google</span
+                        >
+                    </div>
+                    <div
+                        class="flex items-center gap-2 bg-white/90 backdrop-blur-sm px-5 py-3 rounded-full shadow-md"
+                    >
+                        <svg
+                            class="w-5 h-5 text-blue-500"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span
+                            class="font-medium text-gray-700 text-sm md:text-base"
+                            >Ouvert 7j/7 sur RDV</span
+                        >
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bande de réassurance -->
+        <section
+            class="py-6 bg-gradient-to-r from-rose-50 via-peche-light/20 to-rose-50 border-y-2 border-rose-100"
+        >
+            <div class="container mx-auto px-4">
+                <div
+                    class="flex flex-wrap justify-center items-center gap-8 md:gap-16 text-sm md:text-base"
+                >
+                    <div class="flex items-center gap-2 text-gray-700">
+                        <svg
+                            class="w-5 h-5 text-rose-500"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="font-semibold">Devis gratuit 24h</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-gray-700">
+                        <svg
+                            class="w-5 h-5 text-green-500"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="font-semibold">Parking gratuit</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-gray-700">
+                        <svg
+                            class="w-5 h-5 text-blue-500"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="font-semibold">Accès PMR</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-gray-700">
+                        <svg
+                            class="w-5 h-5 text-orange-500"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="font-semibold">Pros certifiées</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Événements Section - AMÉLIORÉE -->
+        <section id="evenements" class="py-20 md:py-28 bg-white">
+            <div class="container mx-auto px-4 lg:px-8">
+                <div class="text-center mb-16">
+                    <span
+                        class="inline-block bg-rose-100 text-rose-600 px-6 py-2 rounded-full text-sm font-semibold mb-6"
+                    >
+                        🎉 Location Salle Événementielle Lorient
+                    </span>
+                    <h2
+                        class="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6 text-gris-texte"
+                    >
+                        Vos Événements <span
+                            class="bg-gradient-to-r from-rose-poudre via-rose-400 to-corail-warmth bg-clip-text text-transparent"
+                        >
+                            Sur Mesure
+                        </span>
+                    </h2>
+                    <p
+                        class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+                    >
+                        Organisez vos <strong
+                            >anniversaires, baby showers, EVJF, baptêmes,
+                            séminaires</strong
+                        > dans notre espace <strong>privatif chaleureux</strong
+                        >. Décoration, animations et traiteur inclus sur
+                        demande.
+                    </p>
+                </div>
+
+                <!-- Event Cards Grid -->
+                <div
+                    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12"
+                >
+                    <EventCard icon="🎂" title="Anniversaires enfants" />
+                    <EventCard icon="👶" title="Baby Shower" />
+                    <EventCard icon="💐" title="EVJF" />
+                    <EventCard icon="🕊️" title="Baptêmes" />
+                    <EventCard icon="☕" title="Brunch & Goûters" />
+                    <EventCard icon="👨‍👩‍👧‍👦" title="Réunions familiales" />
+                    <EventCard icon="💼" title="Séminaires" />
+                    <EventCard icon="🎉" title="Soirées amis" />
+                </div>
+
+                <!-- Infos pratiques événements -->
+                <div
+                    class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 max-w-5xl mx-auto"
+                >
+                    <div
+                        class="bg-gradient-to-br from-rose-50 to-peche-light/20 p-6 rounded-2xl text-center border-2 border-rose-100"
+                    >
+                        <div
+                            class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-md"
+                        >
+                            <svg
+                                class="w-8 h-8 text-rose-500"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                                ></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-lg text-gray-800 mb-2">
+                            Jusqu'à 40 Personnes
+                        </h3>
+                        <p class="text-gray-600 text-sm">
+                            Espace modulable et climatisé
+                        </p>
+                    </div>
+
+                    <div
+                        class="bg-gradient-to-br from-rose-50 to-peche-light/20 p-6 rounded-2xl text-center border-2 border-rose-100"
+                    >
+                        <div
+                            class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-md"
+                        >
+                            <svg
+                                class="w-8 h-8 text-rose-500"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                ></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-lg text-gray-800 mb-2">
+                            Formules Tout Compris
+                        </h3>
+                        <p class="text-gray-600 text-sm">
+                            Décor, animations, buffet inclus
+                        </p>
+                    </div>
+
+                    <div
+                        class="bg-gradient-to-br from-rose-50 to-peche-light/20 p-6 rounded-2xl text-center border-2 border-rose-100"
+                    >
+                        <div
+                            class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-md"
+                        >
+                            <svg
+                                class="w-8 h-8 text-rose-500"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                                ></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-lg text-gray-800 mb-2">
+                            Devis Rapide
+                        </h3>
+                        <p class="text-gray-600 text-sm">
+                            Réponse personnalisée sous 24h
+                        </p>
+                    </div>
+                </div>
+
+                <!-- CTA -->
+                <div class="text-center">
+                    <div
+                        class="flex flex-col sm:flex-row gap-4 justify-center items-center"
+                    >
+                        <a
+                            href="tel:+33618910216"
+                            class="inline-flex items-center gap-3 bg-gradient-to-r from-green-500 to-green-600 text-white px-10 py-5 rounded-full font-bold text-lg hover:scale-105 hover:shadow-2xl transition-all"
+                        >
+                            <svg
+                                class="w-6 h-6"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                            >
+                                <path
+                                    d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+                                ></path>
+                            </svg>
+                            Appeler : 06 18 91 02 16
+                        </a>
+                        <a
+                            href="/evenements"
+                            class="inline-flex items-center gap-2 bg-white border-2 border-rose-300 text-rose-600 px-10 py-5 rounded-full font-bold text-lg hover:bg-rose-50 transition-all"
+                        >
+                            Voir toutes les formules
+                            <svg
+                                class="w-5 h-5"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Bien-être Section - AMÉLIORÉE -->
+        <section
+            id="services"
+            class="py-20 md:py-28 bg-gradient-to-b from-gray-50 to-white"
+        >
+            <div class="container mx-auto px-4 lg:px-8">
+                <div class="text-center mb-16">
+                    <span
+                        class="inline-block bg-rose-100 text-rose-600 px-6 py-2 rounded-full text-sm font-semibold mb-6"
+                    >
+                        🧘 💅 ✨ Services Bien-être & Beauté
+                    </span>
+                    <h2
+                        class="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6 text-gris-texte"
+                    >
+                        Prenez Soin <span
+                            class="bg-gradient-to-r from-rose-poudre via-rose-400 to-corail-warmth bg-clip-text text-transparent"
+                        >
+                            de Vous
+                        </span>
+                    </h2>
+                    <p
+                        class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+                    >
+                        <strong>Cours de yoga</strong> pour tous niveaux, <strong
+                            >prothésie ongulaire</strong
+                        > professionnelle et <strong>soins esthétiques</strong> dans
+                        un cadre zen et chaleureux.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                    <ServiceCard
+                        image={yogaImg}
+                        title="Yoga"
+                        subtitle="Hatha & Vinyasa Flow"
+                        highlight="Lun 18h · Jeu 19h · Tous niveaux"
+                        description="Reconnectez-vous à votre corps et votre esprit. Cours collectifs en petits groupes (12 pers max) dans une ambiance bienveillante. Tapis fournis."
+                    />
+
+                    <ServiceCard
+                        image={onglesImg}
+                        title="Prothésiste Ongulaire"
+                        subtitle="Gel · Semi-permanent · Nail Art"
+                        highlight="Sur rendez-vous 7j/7"
+                        description="Sublimez vos mains avec notre prothésiste diplômée. Pose complète, remplissage, nail art personnalisé. Produits premium qui respectent vos ongles naturels."
+                    />
+
+                    <ServiceCard
+                        image={esthetiqueImg}
+                        title="Soins Esthétiques"
+                        subtitle="Épilation fil · Soins visage"
+                        highlight="Produits naturels & bio"
+                        description="Épilation au fil ultra-précise (technique ancestrale) et soins du visage sur-mesure. Diagnostic peau offert. Résultats visibles dès la 1ère séance."
+                    />
+                </div>
+
+                <div class="text-center">
+                    <div
+                        class="flex flex-col sm:flex-row gap-4 justify-center items-center"
+                    >
+                        <a
+                            href="tel:+33618910216"
+                            class="inline-flex items-center gap-3 bg-gradient-to-r from-rose-400 to-coral-500 text-white px-10 py-5 rounded-full font-bold text-lg hover:scale-105 hover:shadow-2xl transition-all"
+                        >
+                            <svg
+                                class="w-6 h-6"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                            >
+                                <path
+                                    d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+                                ></path>
+                            </svg>
+                            Réserver : 06 18 91 02 16
+                        </a>
+                        <a
+                            href="/services"
+                            class="inline-flex items-center gap-2 bg-white border-2 border-rose-300 text-rose-600 px-10 py-5 rounded-full font-semibold text-lg hover:bg-rose-50 transition-all"
+                        >
+                            Voir tarifs & horaires
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ateliers Section - AMÉLIORÉE -->
+        <section id="ateliers" class="py-20 md:py-28 bg-white">
+            <div class="container mx-auto px-4 lg:px-8">
+                <div class="text-center mb-16">
+                    <span
+                        class="inline-block bg-rose-100 text-rose-600 px-6 py-2 rounded-full text-sm font-semibold mb-6"
+                    >
+                        🎨 Ateliers Créatifs & Animations
+                    </span>
+                    <h2
+                        class="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6 text-gris-texte"
+                    >
+                        Créativité & <span
+                            class="bg-gradient-to-r from-rose-poudre via-rose-400 to-corail-warmth bg-clip-text text-transparent"
+                        >
+                            Partage
+                        </span>
+                    </h2>
+                    <p
+                        class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+                    >
+                        Des <strong>moments ludiques</strong> pour petits et grands
+                        : ateliers créatifs, activités manuelles, animations thématiques.
+                    </p>
+                </div>
+
+                <div
+                    class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+                >
+                    <!-- Photo Gallery -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div
+                            class="aspect-square rounded-2xl overflow-hidden group shadow-lg"
+                        >
+                            <Image
+                                src={atelier1Img}
+                                alt="Atelier créatif enfants Lorient - Le Monde de Camilou"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            />
+                        </div>
+                        <div
+                            class="aspect-square rounded-2xl overflow-hidden group shadow-lg"
+                        >
+                            <Image
+                                src={atelier2Img}
+                                alt="Atelier parents enfants Lorient"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            />
+                        </div>
+                        <div
+                            class="aspect-square rounded-2xl overflow-hidden group shadow-lg"
+                        >
+                            <Image
+                                src={atelier3Img}
+                                alt="Activité manuelle créative"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            />
+                        </div>
+                        <div
+                            class="aspect-square rounded-2xl overflow-hidden group shadow-lg"
+                        >
+                            <Image
+                                src={atelier4Img}
+                                alt="Animation événement enfants"
+                                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            />
+                        </div>
+                    </div>
+
+                    <!-- Activities List -->
+                    <div
+                        class="bg-gradient-to-br from-white to-orange-50/30 rounded-3xl p-8 md:p-10 border-2 border-orange-100 shadow-xl"
+                    >
+                        <h3
+                            class="text-3xl font-display font-bold text-gris-texte mb-8"
+                        >
+                            Nos Activités
+                        </h3>
+                        <ul class="space-y-6">
+                            <li class="flex items-start gap-4">
+                                <span class="text-3xl">✨</span>
+                                <div>
+                                    <p
+                                        class="font-bold text-lg text-gris-texte mb-1"
+                                    >
+                                        Ateliers Créatifs Enfants
+                                    </p>
+                                    <p class="text-gray-600">
+                                        Peinture, pâte à modeler, DIY...
+                                        Activités ludiques et éducatives
+                                        adaptées à tous les âges (3-12 ans).
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <span class="text-3xl">🎨</span>
+                                <div>
+                                    <p
+                                        class="font-bold text-lg text-gris-texte mb-1"
+                                    >
+                                        Ateliers Parents/Enfants
+                                    </p>
+                                    <p class="text-gray-600">
+                                        Moments de complicité à partager en
+                                        famille. Créations communes et souvenirs
+                                        garantis !
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <span class="text-3xl">🧶</span>
+                                <div>
+                                    <p
+                                        class="font-bold text-lg text-gris-texte mb-1"
+                                    >
+                                        Activités Manuelles
+                                    </p>
+                                    <p class="text-gray-600">
+                                        Développez votre créativité : origami,
+                                        scrapbooking, bijoux artisanaux, déco
+                                        saisonnière...
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <span class="text-3xl">🎭</span>
+                                <div>
+                                    <p
+                                        class="font-bold text-lg text-gris-texte mb-1"
+                                    >
+                                        Animations Thématiques
+                                    </p>
+                                    <p class="text-gray-600">
+                                        Halloween, Noël, Pâques, carnaval...
+                                        Ateliers spéciaux selon les saisons et
+                                        événements.
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div
+                            class="mt-8 flex items-center gap-3 bg-orange-100 p-4 rounded-xl"
+                        >
+                            <svg
+                                class="w-6 h-6 text-orange-600 flex-shrink-0"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                                ></path>
+                            </svg>
+                            <p class="font-semibold text-gray-700">
+                                📅 Planning mensuel sur Instagram · Inscription
+                                obligatoire
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Témoignages Section - AMÉLIORÉE -->
+        <section
+            id="temoignages"
+            class="py-20 md:py-28 bg-gradient-to-b from-gray-50 to-white"
+        >
+            <div class="container mx-auto px-4 lg:px-8">
+                <div class="text-center mb-16">
+                    <span
+                        class="inline-block bg-rose-100 text-rose-600 px-6 py-2 rounded-full text-sm font-semibold mb-6"
+                    >
+                        ⭐ Avis Clients Vérifiés
+                    </span>
+                    <h2
+                        class="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6 text-gris-texte"
+                    >
+                        Ils Nous Font <span
+                            class="bg-gradient-to-r from-rose-poudre via-rose-400 to-corail-warmth bg-clip-text text-transparent"
+                        >
+                            Confiance
+                        </span>
+                    </h2>
+                    <p
+                        class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+                    >
+                        Plus de <strong>200 événements organisés</strong> et des clients
+                        satisfaits qui témoignent
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                    <TestimonialCard
+                        author="Sophie M."
+                        service="Anniversaire enfant 7 ans"
+                        text="Un endroit MAGIQUE pour l'anniversaire de ma fille ! L'équipe est adorable, l'espace superbe et les enfants ont A-DO-RÉ. Décoration licorne au top, animations parfaites. Je recommande à 200% !"
+                    />
+
+                    <TestimonialCard
+                        author="Marie L."
+                        service="Cours de yoga hebdomadaire"
+                        text="Les cours de yoga sont exceptionnels. L'ambiance est apaisante, la prof très compétente et bienveillante. C'est devenu mon rendez-vous bien-être hebdomadaire INCONTOURNABLE. Merci !"
+                    />
+
+                    <TestimonialCard
+                        author="Isabelle D."
+                        service="Prothésie ongulaire depuis 6 mois"
+                        text="Prothésiste au TOP du top ! Travail soigné, ongles qui tiennent parfaitement 3-4 semaines, nail art sublime. Accueil chaleureux à chaque fois. Je ne vais plus NULLE PART ailleurs !"
+                    />
+                </div>
+
+                <div class="text-center">
+                    <a
+                        href="https://www.google.com/search?q=le+monde+de+camilou+lorient"
+                        target="_blank"
+                        rel="noopener"
+                        class="inline-flex items-center gap-2 text-rose-600 font-semibold hover:text-rose-700 transition-colors text-lg"
+                    >
+                        Lire tous les avis Google (4.9/5 · 87 avis)
+                        <svg
+                            class="w-5 h-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Infos Pratiques Section - AMÉLIORÉE -->
+        <section id="contact" class="py-20 md:py-28 bg-white">
+            <div class="container mx-auto px-4 lg:px-8">
+                <div class="text-center mb-16">
+                    <span
+                        class="inline-block bg-rose-100 text-rose-600 px-6 py-2 rounded-full text-sm font-semibold mb-6"
+                    >
+                        📍 Infos Pratiques
+                    </span>
+                    <h2
+                        class="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6 text-gris-texte"
+                    >
+                        Nous Trouver <span
+                            class="bg-gradient-to-r from-rose-poudre via-rose-400 to-corail-warmth bg-clip-text text-transparent"
+                        >
+                            à Lorient
+                        </span>
+                    </h2>
+                    <p
+                        class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+                    >
+                        <strong>Centre-ville Lorient</strong> · Parking gratuit à
+                        50m · Accès bus lignes 2 & 5
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <!-- Map -->
+                    <div
+                        class="rounded-3xl overflow-hidden border-2 border-rose-200 h-96 lg:h-auto shadow-xl"
+                    >
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2701.5!2d-3.3638!3d47.7484!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDfCsDQ0JzU0LjIiTiAzwrAyMScxMy45Ilc!5e0!3m2!1sfr!2sfr!4v1234567890"
+                            width="100%"
+                            height="100%"
+                            style="border:0;"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="Carte Google Maps - Le Monde de Camilou Lorient"
+                        ></iframe>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="space-y-6">
+                        <!-- MEGA Card Téléphone -->
+                        <div
+                            class="bg-gradient-to-br from-green-50 to-green-100 rounded-3xl p-8 border-4 border-green-300 shadow-xl"
+                        >
+                            <div class="flex items-start gap-4">
+                                <div
+                                    class="w-16 h-16 rounded-full bg-green-500 flex items-center justify-center flex-shrink-0 animate-pulse"
+                                >
+                                    <svg
+                                        class="w-8 h-8 text-white"
+                                        fill="currentColor"
+                                        viewBox="0 0 20 20"
+                                    >
+                                        <path
+                                            d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+                                        ></path>
+                                    </svg>
+                                </div>
+                                <div class="flex-1">
+                                    <h3
+                                        class="font-bold text-gray-800 mb-2 text-xl"
+                                    >
+                                        📞 Appelez-nous maintenant
+                                    </h3>
+                                    <a
+                                        href="tel:+33618910216"
+                                        class="text-green-700 hover:text-green-900 font-bold text-3xl md:text-4xl block mb-3 hover:underline"
+                                    >
+                                        06 18 91 02 16
+                                    </a>
+                                    <p
+                                        class="text-sm text-gray-700 leading-relaxed"
+                                    >
+                                        <strong>Ouvert 7j/7 · 9h-20h</strong><br
+                                        />
+                                        Réponse immédiate ou rappel sous 2h
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="bg-gradient-to-br from-white to-rose-50/50 rounded-2xl p-6 border-2 border-rose-100 hover:shadow-lg transition-shadow"
+                        >
+                            <div class="flex items-start gap-4">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-gradient-to-r from-rose-400 to-coral-500 flex items-center justify-center flex-shrink-0"
+                                >
+                                    <svg
+                                        class="w-6 h-6 text-white"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                                        ></path>
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                                        ></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3
+                                        class="font-semibold text-gris-texte mb-1 text-lg"
+                                    >
+                                        Adresse
+                                    </h3>
+                                    <p class="text-gray-700 font-medium mb-2">
+                                        <strong>Le Monde de Camilou</strong><br
+                                        />
+                                        20 rue de Carnel<br />
+                                        56100 Lorient
+                                    </p>
+                                    <p class="text-sm text-gray-600">
+                                        🅿️ Parking gratuit à 50m<br />
+                                        🚌 Bus L2 & L5 (arrêt Carnel)
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="bg-gradient-to-br from-white to-rose-50/50 rounded-2xl p-6 border-2 border-rose-100 hover:shadow-lg transition-shadow"
+                        >
+                            <div class="flex items-start gap-4">
+                                <div
+                                    class="w-12 h-12 rounded-full bg-gradient-to-r from-rose-400 to-coral-500 flex items-center justify-center flex-shrink-0"
+                                >
+                                    <svg
+                                        class="w-6 h-6 text-white"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                                        ></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3
+                                        class="font-semibold text-gris-texte mb-1 text-lg"
+                                    >
+                                        Email
+                                    </h3>
+                                    <a
+                                        href="mailto:mallamaci.annelaure@gmail.com"
+                                        class="text-corail-warmth hover:underline break-all font-medium"
+                                    >
+                                        mallamaci.annelaure@gmail.com
+                                    </a>
+                                    <p class="text-sm text-gray-600 mt-1">
+                                        Réponse sous 24h maximum
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="bg-gradient-to-br from-white to-rose-50/50 rounded-2xl p-6 border-2 border-rose-100"
+                        >
+                            <h3
+                                class="font-semibold text-gris-texte mb-4 text-lg flex items-center gap-2"
+                            >
+                                <svg
+                                    class="w-5 h-5 text-rose-500"
+                                    fill="currentColor"
+                                    viewBox="0 0 20 20"
+                                >
+                                    <path
+                                        d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z"
+                                    ></path>
+                                </svg>
+                                Réseaux Sociaux
+                            </h3>
+                            <div class="flex gap-4">
+                                <a
+                                    href="https://www.instagram.com/cafepoussette.lorient"
+                                    target="_blank"
+                                    rel="noopener"
+                                    aria-label="Instagram Le Monde de Camilou"
+                                    class="group w-14 h-14 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center hover:scale-110 transition-all duration-300 shadow-lg"
+                                >
+                                    <svg
+                                        class="w-7 h-7 text-white"
+                                        fill="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+                                        ></path>
+                                    </svg>
+                                </a>
+                                <a
+                                    href="https://www.facebook.com/lemondedecamilou"
+                                    target="_blank"
+                                    rel="noopener"
+                                    aria-label="Facebook Le Monde de Camilou"
+                                    class="w-14 h-14 rounded-full bg-blue-600 flex items-center justify-center hover:scale-110 transition-all duration-300 shadow-lg"
+                                >
+                                    <svg
+                                        class="w-7 h-7 text-white"
+                                        fill="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                                        ></path>
+                                    </svg>
+                                </a>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-3">
+                                📸 Suivez nos actualités, événements et
+                                créations
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Fixed Mobile Call Button - AMÉLIORÉ -->
+    <a
+        href="tel:+33618910216"
+        class="fixed bottom-6 right-6 z-50 md:hidden bg-gradient-to-r from-green-500 to-green-600 text-white px-8 py-5 rounded-full font-bold shadow-2xl hover:scale-110 transition-all duration-300 flex items-center gap-3 animate-bounce hover:animate-none"
+        aria-label="Appeler Le Monde de Camilou"
+    >
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+            <path
+                d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+            ></path>
+        </svg>
+        <span class="text-lg">Appeler</span>
+    </a>
+
+    <Footer />
+</Layout>

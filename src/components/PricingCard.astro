@@ -1,0 +1,109 @@
+---
+interface Props {
+    title: string;
+    price: string;
+    capacity: string;
+    duration: string;
+    features: string[];
+    isPopular?: boolean;
+    ctaLink?: string;
+}
+
+const {
+    title,
+    price,
+    capacity,
+    duration,
+    features,
+    isPopular = false,
+    ctaLink = "/contact?type=evenement",
+} = Astro.props;
+---
+
+<div
+    class={`relative bg-white rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl flex flex-col h-full border-2 ${isPopular ? "border-rose-300 shadow-xl scale-105 z-10" : "border-rose-100"}`}
+>
+    {
+        isPopular && (
+            <div class="absolute top-0 right-0 bg-gradient-to-r from-rose-poudre to-corail-warmth text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl rounded-tr-lg shadow-md uppercase tracking-wide">
+                Populaire
+            </div>
+        )
+    }
+
+    <div class="mb-6">
+        <h3 class="text-2xl font-display font-bold text-gris-texte mb-2">
+            {title}
+        </h3>
+        <div class="flex items-baseline gap-1">
+            <span
+                class="text-3xl font-bold bg-gradient-to-r from-rose-poudre to-corail-warmth bg-clip-text text-transparent"
+                >{price}</span
+            >
+        </div>
+        <div class="mt-4 space-y-2 text-sm text-gray-500">
+            <div class="flex items-center gap-2">
+                <svg
+                    class="w-4 h-4 text-rose-300"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    ><path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                    ></path></svg
+                >
+                {capacity}
+            </div>
+            <div class="flex items-center gap-2">
+                <svg
+                    class="w-4 h-4 text-rose-300"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    ><path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path></svg
+                >
+                {duration}
+            </div>
+        </div>
+    </div>
+
+    <div class="border-t border-rose-100 my-6"></div>
+
+    <ul class="space-y-4 mb-8 flex-grow">
+        {
+            features.map((feature) => (
+                <li class="flex items-start gap-3 text-gray-600">
+                    <svg
+                        class="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M5 13l4 4L19 7"
+                        />
+                    </svg>
+                    <span>{feature}</span>
+                </li>
+            ))
+        }
+    </ul>
+
+    <a
+        href={ctaLink}
+        class={`block w-full py-4 rounded-xl text-center font-semibold transition-all duration-300 ${isPopular ? "bg-gradient-to-r from-rose-poudre to-corail-warmth text-white hover:opacity-90 shadow-lg" : "border-2 border-rose-200 text-rose-400 hover:border-rose-300 hover:bg-rose-50"}`}
+    >
+        Réserver
+    </a>
+</div>

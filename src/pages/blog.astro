@@ -1,0 +1,109 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+import { getCollection } from 'astro:content';
+
+const blogPosts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<Layout title="Blog - Le Monde de Camilou | Conseils Bien-être et Événements" description="Découvrez nos articles sur le yoga, la beauté, l'organisation d'événements et nos ateliers créatifs à Lorient.">
+  <Header />
+  
+  <main>
+    <!-- Hero -->
+    <section class="bg-gradient-hero py-20 px-4">
+      <div class="container mx-auto text-center">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6 bg-gradient-to-r from-gris-texte to-gris-texte/70 bg-clip-text text-transparent">
+          Notre Blog
+        </h1>
+        <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+          Conseils, astuces et actualités autour du bien-être et de l'événementiel
+        </p>
+      </div>
+    </section>
+
+    <!-- Blog Posts Grid -->
+    <section class="py-16 md:py-24 bg-white">
+      <div class="container mx-auto px-4 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+{blogPosts.map((post) => (
+            <article class="group bg-white rounded-2xl overflow-hidden border border-rose-100 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 flex flex-col h-full">
+              <!-- Image Placeholder (Randomized color based on slug length to have variety) -->
+              <div class={`relative h-48 w-full overflow-hidden flex items-center justify-center ${
+                  post.slug.length % 3 === 0 ? 'bg-rose-100' : 
+                  post.slug.length % 3 === 1 ? 'bg-peche-light' : 'bg-mauve-100'
+              }`}>
+                <span class="text-4xl">
+                    {post.data.category === 'Yoga' ? '🧘‍♀️' :
+                     post.data.category === 'Prothésie Ongulaire' ? '💅' :
+                     post.data.category === 'Esthétique' ? '✨' : '🎉'}
+                </span>
+              </div>
+
+              <!-- Content -->
+              <div class="p-6 flex flex-col flex-grow">
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="px-3 py-1 bg-gradient-to-r from-rose-poudre/20 to-corail-doux/20 text-corail-warmth rounded-full text-sm font-semibold">
+                    {post.data.category}
+                  </span>
+                  <span class="text-sm text-gray-500">
+                    {post.data.pubDate.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' })}
+                  </span>
+                </div>
+                
+                <h2 class="text-xl font-display font-semibold text-gris-texte mb-3 group-hover:text-rose-poudre transition-colors line-clamp-2">
+                  <a href={`/blog/${post.slug}`} class="before:absolute before:inset-0">
+                    {post.data.title}
+                  </a>
+                </h2>
+                
+                <p class="text-gray-600 leading-relaxed mb-4 line-clamp-3 flex-grow">
+                  {post.data.description}
+                </p>
+                
+                <div class="text-corail-warmth font-semibold group-hover:gap-3 transition-all duration-300 flex items-center gap-2 mt-auto">
+                  Lire la suite
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Categories Filter (Optional) -->
+    <section class="py-8 bg-gradient-to-b from-white to-rose-50/50">
+      <div class="container mx-auto px-4 lg:px-8 text-center">
+        <h3 class="text-xl font-display font-semibold text-gris-texte mb-4">
+          Catégories
+        </h3>
+        <div class="flex flex-wrap justify-center gap-3">
+          <button class="px-6 py-2 bg-gradient-cta text-white rounded-full font-semibold hover:scale-105 transition-all duration-300">
+            Tous
+          </button>
+          <button class="px-6 py-2 bg-white border border-rose-200 text-gris-texte rounded-full font-semibold hover:bg-gradient-to-r hover:from-peche-light/30 hover:to-rose-poudre-light/30 transition-all duration-300">
+            Yoga
+          </button>
+          <button class="px-6 py-2 bg-white border border-rose-200 text-gris-texte rounded-full font-semibold hover:bg-gradient-to-r hover:from-peche-light/30 hover:to-rose-poudre-light/30 transition-all duration-300">
+            Prothésie ongulaire
+          </button>
+          <button class="px-6 py-2 bg-white border border-rose-200 text-gris-texte rounded-full font-semibold hover:bg-gradient-to-r hover:from-peche-light/30 hover:to-rose-poudre-light/30 transition-all duration-300">
+            Esthétique
+          </button>
+          <button class="px-6 py-2 bg-white border border-rose-200 text-gris-texte rounded-full font-semibold hover:bg-gradient-to-r hover:from-peche-light/30 hover:to-rose-poudre-light/30 transition-all duration-300">
+            Événements
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

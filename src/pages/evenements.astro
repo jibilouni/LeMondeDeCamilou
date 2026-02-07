@@ -1,0 +1,1420 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import EventCard from "../components/EventCard.astro";
+import ProcessStep from "../components/ProcessStep.astro";
+import PricingCard from "../components/PricingCard.astro";
+import FAQItem from "../components/FAQItem.astro";
+import { Image } from "astro:assets";
+
+// Import images
+import atelier1 from "../assets/images/ateliers/atelier-1.png";
+import atelier2 from "../assets/images/ateliers/atelier-2.png";
+import atelier3 from "../assets/images/ateliers/atelier-3.png";
+import atelier4 from "../assets/images/ateliers/atelier-4.png";
+
+const events = [
+    {
+        icon: "🎂",
+        title: "Anniversaires enfants",
+        description:
+            "Fête d'anniversaire clé en main à Lorient. Décoration personnalisée, animations adaptées à l'âge, goûter gourmand inclus. Notre espace sécurisé accueille jusqu'à 40 enfants. Formules tout compris dès 2h de location.",
+        includes: [
+            "Décoration thématique complète",
+            "Animation jeux & musique 1h",
+            "Gâteau personnalisé & boissons",
+            "Cartons d'invitation offerts",
+        ],
+    },
+    {
+        icon: "🍼",
+        title: "Baby Shower",
+        description:
+            "Organisation baby shower Lorient. Décoration pastel raffinée, buffet sucré-salé, animations (devinettes bébé, livre d'or), coin photos Instagram. Espace privatisé 3h pour célébrer l'arrivée de bébé entre proches.",
+        includes: [
+            "Décoration pastel sur-mesure",
+            "Buffet gourmand 15-20 pers.",
+            "Jeux Baby Shower animés",
+            "Coin photo avec accessoires",
+        ],
+    },
+    {
+        icon: "👯‍♀️",
+        title: "EVJF - Enterrement de vie de jeune fille",
+        description:
+            "EVJF original à Lorient. Privatisation totale de l'espace, décoration rose & paillettes, cocktails, blind test musical, défis photos, surprises pour la mariée. Ambiance fun garantie jusqu'à 35 personnes.",
+        includes: [
+            "Privatisation complète 4h",
+            "Cocktails & apéritif",
+            "Playlist personnalisée",
+            "Pack défis & accessoires EVJF",
+        ],
+    },
+    {
+        icon: "🕊️",
+        title: "Baptêmes & Communions",
+        description:
+            "Location salle baptême Lorient. Cadre élégant et sobre, tables dressées, buffet traiteur adapté tous âges, espace enfants sécurisé. Nous respectons vos traditions religieuses. Capacité 40 personnes.",
+        includes: [
+            "Tables dressées avec nappes",
+            "Buffet traiteur salé/sucré",
+            "Décoration florale élégante",
+            "Coin jeux enfants surveillé",
+        ],
+    },
+    {
+        icon: "☕",
+        title: "Brunch & Goûters privatifs",
+        description:
+            "Coffee shop privatisé Lorient. Brunch dominical ou goûter entre amis dans notre espace cosy. Formules sucrées-salées maison, boissons chaudes illimitées. Idéal 10-25 personnes, réservation 2h minimum.",
+        includes: [
+            "Buffet brunch à volonté",
+            "Café, thé, jus frais illimités",
+            "Pâtisseries & viennoiseries",
+            "Ambiance musicale cosy",
+        ],
+    },
+    {
+        icon: "👨‍👩‍👧‍👦",
+        title: "Réunions familiales",
+        description:
+            "Salle de réception familiale Lorient. Anniversaires adultes, cousinades, fêtes de famille. Tables modulables, cuisine accessible, possibilité traiteur ou apportez vos plats. Nettoyage inclus.",
+        includes: [
+            "Location salle 4-6h",
+            "Tables & chaises (40 pers.)",
+            "Accès cuisine équipée",
+            "Ménage fin de prestation",
+        ],
+    },
+    {
+        icon: "💼",
+        title: "Séminaires & Team Building",
+        description:
+            "Location salle séminaire Lorient. Wifi fibre, vidéoprojecteur HD, paperboard, pause café incluse. Ambiance professionnelle mais chaleureuse. Formules demi-journée ou journée complète jusqu'à 30 personnes.",
+        includes: [
+            "Wifi haut débit + vidéoprojecteur",
+            "Pause café & viennoiseries",
+            "Configuration tables modulable",
+            "Matériel présentation fourni",
+        ],
+    },
+    {
+        icon: "🎉",
+        title: "Soirées & Anniversaires adultes",
+        description:
+            "Location salle fête Lorient. Privatisation totale pour vos soirées entre amis : anniversaires 18-50 ans, pendaisons de crémaillère, soirées à thème. Sono, bar équipé, piste de danse. Fermeture 1h du matin.",
+        includes: [
+            "Système son professionnel",
+            "Espace danse avec éclairages",
+            "Bar équipé (apportez vos boissons)",
+            "Horaire étendu jusqu'à 1h",
+        ],
+    },
+];
+
+const faqs = [
+    {
+        question:
+            "Combien de temps à l'avance dois-je réserver ma salle à Lorient ?",
+        answer: "Pour une réservation optimale au Monde de Camilou, nous conseillons 3 à 4 semaines d'avance pour les week-ends (très demandés). Pour les événements importants (baptêmes, EVJF, séminaires), anticipez 6 à 8 semaines. En semaine, 2 semaines suffisent généralement. Contactez-nous au 06 18 91 02 16 pour vérifier les disponibilités en temps réel.",
+    },
+    {
+        question:
+            "Quels sont les tarifs de location de salle pour événements à Lorient ?",
+        answer: "Nos tarifs varient selon la formule choisie (Essentielle, Plaisir, Prestige), la durée de location (2h à 6h) et le nombre d'invités (10 à 40 personnes). Comptez en moyenne 15-20€/personne tout compris (décoration, animation, buffet). Demandez un devis gratuit personnalisé en 24h via notre formulaire ou par téléphone.",
+    },
+    {
+        question: "Puis-je apporter ma propre décoration et mon traiteur ?",
+        answer: "Oui ! Vous êtes libres d'apporter votre décoration personnelle (sans fixation murale). Pour le traiteur, deux options : utiliser nos partenaires locaux de confiance OU apporter votre propre nourriture (accès cuisine équipée). Les boissons alcoolisées sont autorisées si vous les fournissez (pas de vente sur place).",
+    },
+    {
+        question:
+            "Votre salle est-elle accessible aux personnes à mobilité réduite (PMR) ?",
+        answer: "Oui, Le Monde de Camilou est 100% accessible PMR : entrée de plain-pied, toilettes adaptées, espace de circulation large. Notre adresse : 20 rue de Carnel, 56100 Lorient, avec parking gratuit à proximité immédiate.",
+    },
+    {
+        question:
+            "Proposez-vous des animations pour enfants lors des événements ?",
+        answer: "Absolument ! Nos formules anniversaires enfants incluent des animations adaptées par âge : jeux musicaux, chasses au trésor, ateliers créatifs, maquillage. Pour les événements familiaux (baptêmes, réunions), nous mettons à disposition un espace jeux sécurisé avec activités calmes. Animations supplémentaires sur devis (magicien, sculpteur ballons).",
+    },
+    {
+        question: "Que se passe-t-il en cas d'annulation de ma réservation ?",
+        answer: "Conditions d'annulation flexibles : modification gratuite jusqu'à 15 jours avant l'événement. Annulation entre 15 et 7 jours : conservation de 50% de l'acompte. Moins de 7 jours : acompte non remboursable. En cas de force majeure (hospitalisation, décès familial), étude au cas par cas avec report possible. Assurance annulation recommandée pour les gros événements.",
+    },
+    {
+        question: "Fournissez-vous la vaisselle, les tables et les chaises ?",
+        answer: "Oui, tout l'équipement est inclus dans nos formules : tables rondes ou rectangulaires (au choix), chaises confortables (40 places assises), vaisselle complète (assiettes, couverts, verres), nappes blanches ou colorées, système son Bluetooth. Vous n'apportez que votre nourriture et votre bonne humeur !",
+    },
+    {
+        question: "Y a-t-il un parking gratuit près de votre salle à Lorient ?",
+        answer: "Oui, stationnement facile : 5 places gratuites devant Le Monde de Camilou (20 rue de Carnel), + parking public gratuit à 100m (50 places), + stationnement résidentiel autorisé dans les rues adjacentes. Accès bus ligne 2 et 5 (arrêt Carnel à 2 min à pied). Idéal centre-ville Lorient.",
+    },
+];
+
+// Données structurées Schema.org pour SEO local
+const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "EventVenue",
+    name: "Le Monde de Camilou - Location Salle Événements Lorient",
+    description:
+        "Location de salle pour événements à Lorient : anniversaires enfants, baby shower, EVJF, baptêmes, séminaires. Capacité 40 personnes, formules tout compris.",
+    address: {
+        "@type": "PostalAddress",
+        streetAddress: "20, rue de Carnel",
+        addressLocality: "Lorient",
+        postalCode: "56100",
+        addressCountry: "FR",
+        addressRegion: "Bretagne",
+    },
+    geo: {
+        "@type": "GeoCoordinates",
+        latitude: "47.7482",
+        longitude: "-3.3705",
+    },
+    telephone: "+33618910216",
+    email: "mallamaci.annelaure@gmail.com",
+    url: "https://lemondedecamilou.fr/evenements",
+    image: "https://lemondedecamilou.fr/images/salle-evenements-lorient.jpg",
+    priceRange: "€€",
+    openingHoursSpecification: {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday",
+        ],
+        opens: "09:00",
+        closes: "20:00",
+    },
+    amenityFeature: [
+        { "@type": "LocationFeatureSpecification", name: "Wifi" },
+        { "@type": "LocationFeatureSpecification", name: "Parking gratuit" },
+        { "@type": "LocationFeatureSpecification", name: "Accessible PMR" },
+        { "@type": "LocationFeatureSpecification", name: "Cuisine équipée" },
+        { "@type": "LocationFeatureSpecification", name: "Système son" },
+    ],
+    maximumAttendeeCapacity: 40,
+    sameAs: [
+        "https://www.instagram.com/le.monde.de.camilou",
+        "https://www.facebook.com/lemondedecamilou",
+    ],
+};
+---
+
+<Layout
+    title="Location Salle Événements Lorient - Anniversaires, EVJF, Baptêmes | Le Monde de Camilou"
+    description="Location salle événementielle Lorient 56100 ✓ Anniversaires enfants & adultes ✓ Baby shower ✓ EVJF ✓ Baptêmes ✓ Séminaires ✓ 40 personnes ✓ Formules tout compris ✓ Devis gratuit 24h ☎ 06 18 91 02 16"
+>
+    <!-- Schema.org JSON-LD -->
+    <!-- Schema.org JSON-LD -->
+    <script
+        type="application/ld+json"
+        set:html={JSON.stringify(structuredData)}
+    />
+
+    <Header />
+
+    <main>
+        <!-- Hero Section - Optimisé SEO -->
+        <section
+            class="relative min-h-[65vh] flex items-center justify-center overflow-hidden"
+            itemscope
+            itemtype="https://schema.org/Place"
+        >
+            <div
+                class="absolute inset-0 bg-gradient-to-br from-peche-clair/30 via-white to-rose-poudre/20 z-0"
+            >
+            </div>
+
+            <!-- Animated shapes background -->
+            <div
+                class="absolute top-20 left-10 w-64 h-64 bg-rose-200/20 rounded-full blur-3xl animate-pulse"
+            >
+            </div>
+            <div
+                class="absolute bottom-20 right-10 w-96 h-96 bg-peche-light/30 rounded-full blur-3xl animate-pulse delay-1000"
+            >
+            </div>
+
+            <div class="container mx-auto px-4 relative z-10 text-center">
+                <nav
+                    class="flex justify-center mb-8 text-sm text-gray-500"
+                    aria-label="Breadcrumb"
+                >
+                    <ol
+                        class="flex items-center space-x-2"
+                        itemscope
+                        itemtype="https://schema.org/BreadcrumbList"
+                    >
+                        <li
+                            itemprop="itemListElement"
+                            itemscope
+                            itemtype="https://schema.org/ListItem"
+                        >
+                            <a
+                                href="/"
+                                class="hover:text-rose-400 transition-colors"
+                                itemprop="item"
+                                ><span itemprop="name">Accueil</span></a
+                            >
+                            <meta itemprop="position" content="1" />
+                        </li>
+                        <li><span class="text-gray-300">/</span></li>
+                        <li
+                            class="font-medium text-rose-400"
+                            itemprop="itemListElement"
+                            itemscope
+                            itemtype="https://schema.org/ListItem"
+                        >
+                            <span itemprop="name"
+                                >Location Salle Événements Lorient</span
+                            >
+                            <meta itemprop="position" content="2" />
+                        </li>
+                    </ol>
+                </nav>
+
+                <h1
+                    class="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-gris-texte mb-6 leading-tight"
+                    itemprop="name"
+                >
+                    Location Salle Événements à Lorient <br />
+                    <span
+                        class="bg-gradient-to-r from-rose-poudre to-corail-warmth bg-clip-text text-transparent"
+                        >Formules Tout Compris</span
+                    >
+                </h1>
+
+                <p
+                    class="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto mb-6 leading-relaxed font-light"
+                    itemprop="description"
+                >
+                    Organisez vos <strong
+                        >anniversaires, baby shower, EVJF, baptêmes et
+                        séminaires</strong
+                    > dans notre espace privatif au cœur de <strong
+                        >Lorient (56100)</strong
+                    >. Capacité <strong>40 personnes</strong> · Décoration incluse
+                    · Devis gratuit sous 24h
+                </p>
+
+                <!-- Trust Badges -->
+                <div
+                    class="flex flex-wrap items-center justify-center gap-4 mb-10 text-sm text-gray-600"
+                >
+                    <div
+                        class="flex items-center gap-2 bg-white/80 px-4 py-2 rounded-full shadow-sm"
+                    >
+                        <svg
+                            class="w-5 h-5 text-green-500"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="font-medium">200+ événements réussis</span>
+                    </div>
+                    <div
+                        class="flex items-center gap-2 bg-white/80 px-4 py-2 rounded-full shadow-sm"
+                    >
+                        <svg
+                            class="w-5 h-5 text-rose-400"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                        >
+                            <path
+                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                            ></path>
+                        </svg>
+                        <span class="font-medium">4.9/5 avis Google</span>
+                    </div>
+                    <div
+                        class="flex items-center gap-2 bg-white/80 px-4 py-2 rounded-full shadow-sm"
+                    >
+                        <svg
+                            class="w-5 h-5 text-blue-500"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="font-medium">Paiement sécurisé</span>
+                    </div>
+                </div>
+
+                <div
+                    class="flex flex-col sm:flex-row items-center justify-center gap-4"
+                >
+                    <a
+                        href="tel:+33618910216"
+                        class="bg-gradient-cta text-white px-10 py-5 rounded-full font-bold text-lg hover:scale-105 hover:shadow-2xl transition-all duration-300 w-full sm:w-auto text-center flex items-center justify-center gap-3"
+                    >
+                        <svg
+                            class="w-6 h-6"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                        >
+                            <path
+                                d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+                            ></path>
+                        </svg>
+                        Appeler : 06 18 91 02 16
+                    </a>
+                    <a
+                        href="#devis"
+                        class="bg-white border-2 border-rose-300 text-rose-500 px-10 py-5 rounded-full font-bold text-lg hover:bg-rose-50 hover:border-rose-400 transition-all duration-300 w-full sm:w-auto text-center"
+                    >
+                        Devis gratuit 24h
+                    </a>
+                </div>
+
+                <p class="mt-6 text-sm text-gray-500">
+                    ⚡ Réponse garantie sous 24h · 📍 Centre-ville Lorient · 🅿️
+                    Parking gratuit
+                </p>
+            </div>
+        </section>
+
+        <!-- Section USP (Unique Selling Points) - NOUVEAU -->
+        <section class="py-12 bg-white border-b border-gray-100">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <div class="text-center">
+                        <div
+                            class="w-16 h-16 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-4"
+                        >
+                            <svg
+                                class="w-8 h-8 text-rose-500"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                                ></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-gray-800 mb-2">
+                            Réservation Express
+                        </h3>
+                        <p class="text-sm text-gray-600">
+                            Devis personnalisé en moins de 24h
+                        </p>
+                    </div>
+                    <div class="text-center">
+                        <div
+                            class="w-16 h-16 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-4"
+                        >
+                            <svg
+                                class="w-8 h-8 text-rose-500"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                ></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-gray-800 mb-2">
+                            Tout Compris
+                        </h3>
+                        <p class="text-sm text-gray-600">
+                            Décor, animations, buffet inclus
+                        </p>
+                    </div>
+                    <div class="text-center">
+                        <div
+                            class="w-16 h-16 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-4"
+                        >
+                            <svg
+                                class="w-8 h-8 text-rose-500"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                                ></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-gray-800 mb-2">
+                            Jusqu'à 40 Personnes
+                        </h3>
+                        <p class="text-sm text-gray-600">
+                            Espace modulable et climatisé
+                        </p>
+                    </div>
+                    <div class="text-center">
+                        <div
+                            class="w-16 h-16 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-4"
+                        >
+                            <svg
+                                class="w-8 h-8 text-rose-500"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                                ></path>
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-bold text-gray-800 mb-2">
+                            Centre Lorient
+                        </h3>
+                        <p class="text-sm text-gray-600">
+                            Accès facile + parking gratuit
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Types d'événements - SEO optimisé -->
+        <section
+            id="types"
+            class="py-20 bg-gradient-to-b from-white to-gray-50"
+        >
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2
+                        class="text-4xl md:text-5xl font-display font-bold text-gris-texte mb-4"
+                    >
+                        Tous Vos Événements à Lorient
+                    </h2>
+                    <p class="text-gray-600 max-w-3xl mx-auto text-lg">
+                        De l'anniversaire enfant au séminaire d'entreprise, nous
+                        adaptons notre <strong>salle événementielle</strong> et nos
+                        services à vos besoins. <span
+                            class="text-rose-500 font-semibold"
+                            >Formules clé en main</span
+                        > pour 10 à 40 personnes.
+                    </p>
+                </div>
+
+                <div
+                    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+                >
+                    {
+                        events.map((event) => (
+                            <EventCard
+                                icon={event.icon}
+                                title={event.title}
+                                description={event.description}
+                                includes={event.includes}
+                                detailed={true}
+                            />
+                        ))
+                    }
+                </div>
+
+                <!-- CTA intermédiaire -->
+                <div class="text-center mt-12">
+                    <p class="text-gray-600 mb-6 text-lg">
+                        <strong
+                            >Vous ne trouvez pas votre type d'événement ?</strong
+                        > Nous étudions toutes les demandes personnalisées.
+                    </p>
+                    <a
+                        href="tel:+33618910216"
+                        class="inline-flex items-center gap-2 bg-white border-2 border-rose-300 text-rose-600 px-8 py-4 rounded-full font-semibold hover:bg-rose-50 transition-all"
+                    >
+                        <svg
+                            class="w-5 h-5"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                        >
+                            <path
+                                d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+                            ></path>
+                        </svg>
+                        Parlons de votre projet : 06 18 91 02 16
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comment ça marche -->
+        <section class="py-20 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2
+                        class="text-4xl md:text-5xl font-display font-bold text-gris-texte mb-4"
+                    >
+                        Réserver Votre Salle en 3 Étapes
+                    </h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">
+                        Un processus simple et rapide pour garantir le succès de
+                        votre événement
+                    </p>
+                </div>
+
+                <div
+                    class="grid grid-cols-1 md:grid-cols-3 gap-12 relative max-w-5xl mx-auto"
+                >
+                    <ProcessStep
+                        number={1}
+                        title="Contact & Disponibilités"
+                        description="Appelez-nous au 06 18 91 02 16 ou remplissez notre formulaire. Nous vérifions les créneaux disponibles et discutons de vos souhaits (date, nombre d'invités, thème, budget)."
+                    />
+                    <ProcessStep
+                        number={2}
+                        title="Devis Personnalisé Gratuit"
+                        description="Sous 24h, vous recevez un devis détaillé adapté à votre événement : formule choisie, options incluses, tarif tout compris. Sans engagement, modifications possibles."
+                    />
+                    <ProcessStep
+                        number={3}
+                        title="Validation & Jour J Sans Stress"
+                        description="Acompte 30% à la réservation. Nous gérons TOUT le jour J : installation décor, accueil invités, coordination buffet. Vous profitez pleinement de votre événement !"
+                    />
+                </div>
+
+                <div
+                    class="text-center mt-12 bg-rose-50 p-8 rounded-2xl max-w-3xl mx-auto"
+                >
+                    <p class="text-gray-700 mb-4">
+                        <strong class="text-rose-600"
+                            >⏱️ Réservation rapide :</strong
+                        > Nos créneaux les plus demandés sont les <strong
+                            >samedis après-midi</strong
+                        > et <strong>dimanches matin</strong>. Anticipez votre
+                        réservation pour garantir votre date idéale !
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Formules Pricing - SANS PRIX -->
+        <section
+            id="tarifs"
+            class="py-20 bg-gradient-to-b from-gray-50 to-white"
+        >
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2
+                        class="text-4xl md:text-5xl font-display font-bold text-gris-texte mb-4"
+                    >
+                        Nos Formules Événements
+                    </h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto mb-6">
+                        Des packages tout compris pour simplifier votre
+                        organisation. Tarifs personnalisés selon vos besoins.
+                    </p>
+                    <div
+                        class="inline-flex items-center gap-2 bg-yellow-50 border-2 border-yellow-200 text-yellow-800 px-6 py-3 rounded-full font-semibold"
+                    >
+                        <svg
+                            class="w-5 h-5"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                        >
+                            <path
+                                d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"
+                            ></path>
+                            <path
+                                fill-rule="evenodd"
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        Tarifs sur devis - Chaque événement est unique
+                    </div>
+                </div>
+
+                <div
+                    class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch"
+                >
+                    <!-- Formule Essentielle -->
+                    <PricingCard
+                        title="Essentielle"
+                        price="Sur devis"
+                        capacity="10-20 personnes"
+                        duration="2 heures minimum"
+                        features={[
+                            "Location exclusive de la salle",
+                            "Tables & chaises confortables",
+                            "Décoration sobre et soignée",
+                            "Vaisselle complète incluse",
+                            "Système audio Bluetooth",
+                            "Ménage fin de prestation",
+                        ]}
+                    />
+
+                    <!-- Formule Plaisir -->
+                    <PricingCard
+                        title="Plaisir"
+                        price="Sur devis"
+                        capacity="20-30 personnes"
+                        duration="3 heures"
+                        isPopular={true}
+                        features={[
+                            "✨ Tout de la formule Essentielle",
+                            "Décoration personnalisée (thème au choix)",
+                            "Buffet goûter gourmand maison",
+                            "Animation dédiée 1h (adaptée à l'âge)",
+                            "Photos souvenir numériques HD",
+                            "Cadeaux invités (goodies personnalisés)",
+                        ]}
+                    />
+
+                    <!-- Formule Prestige -->
+                    <PricingCard
+                        title="Prestige"
+                        price="Sur devis"
+                        capacity="30-40 personnes"
+                        duration="4-6 heures"
+                        features={[
+                            "🌟 Tout de la formule Plaisir",
+                            "Décoration premium sur-mesure (designer)",
+                            "Buffet traiteur complet salé/sucré",
+                            "Animation complète 2-3h (plusieurs activités)",
+                            "Photographe professionnel (100+ photos)",
+                            "Cadeaux VIP invités + Livre d'or personnalisé",
+                            "Service à table option dîner assis",
+                        ]}
+                    />
+                </div>
+
+                <div class="text-center mt-12">
+                    <p class="text-gray-700 mb-6 max-w-3xl mx-auto">
+                        <strong>Tarifs indicatifs moyens :</strong> Comptez <strong
+                            >15-25€/personne</strong
+                        > tout compris pour nos formules standards. Le prix final
+                        dépend de vos choix (durée, animations, traiteur, options
+                        déco). <span class="text-rose-600 font-semibold"
+                            >Demandez votre devis gratuit personnalisé en 24h.</span
+                        >
+                    </p>
+                    <div
+                        class="flex flex-col sm:flex-row gap-4 justify-center items-center"
+                    >
+                        <a
+                            href="#devis"
+                            class="bg-gradient-cta text-white px-10 py-4 rounded-full font-bold text-lg hover:scale-105 hover:shadow-xl transition-all"
+                        >
+                            Obtenir mon devis gratuit
+                        </a>
+                        <a
+                            href="tel:+33618910216"
+                            class="bg-white border-2 border-gray-300 text-gray-700 px-10 py-4 rounded-full font-semibold text-lg hover:border-rose-300 hover:text-rose-600 transition-all flex items-center gap-2"
+                        >
+                            <svg
+                                class="w-5 h-5"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                            >
+                                <path
+                                    d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+                                ></path>
+                            </svg>
+                            06 18 91 02 16
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NOUVELLE SECTION : Pourquoi Le Monde de Camilou -->
+        <section class="py-20 bg-white">
+            <div class="container mx-auto px-4">
+                <h2
+                    class="text-4xl md:text-5xl font-display font-bold text-center text-gris-texte mb-16"
+                >
+                    Pourquoi choisir notre salle à Lorient ?
+                </h2>
+
+                <div
+                    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto"
+                >
+                    <div
+                        class="bg-gradient-to-br from-rose-50 to-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
+                    >
+                        <div
+                            class="w-14 h-14 bg-rose-500 rounded-full flex items-center justify-center mb-6"
+                        >
+                            <svg
+                                class="w-8 h-8 text-white"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M5 13l4 4L19 7"></path>
+                            </svg>
+                        </div>
+                        <h3
+                            class="text-2xl font-display font-bold text-gray-800 mb-3"
+                        >
+                            Clé en Main
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Vous n'avez <strong>RIEN à gérer</strong> : décoration,
+                            installation, animation, buffet, ménage... On s'occupe
+                            de tout du début à la fin. Vous profitez juste de votre
+                            événement !
+                        </p>
+                    </div>
+
+                    <div
+                        class="bg-gradient-to-br from-rose-50 to-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
+                    >
+                        <div
+                            class="w-14 h-14 bg-rose-500 rounded-full flex items-center justify-center mb-6"
+                        >
+                            <svg
+                                class="w-8 h-8 text-white"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                ></path>
+                            </svg>
+                        </div>
+                        <h3
+                            class="text-2xl font-display font-bold text-gray-800 mb-3"
+                        >
+                            Tarifs Transparents
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Devis <strong>détaillé et sans surprise</strong>.
+                            Pas de frais cachés. Vous savez exactement ce qui
+                            est inclus dans votre formule. Paiement sécurisé en
+                            2 fois (acompte + solde).
+                        </p>
+                    </div>
+
+                    <div
+                        class="bg-gradient-to-br from-rose-50 to-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
+                    >
+                        <div
+                            class="w-14 h-14 bg-rose-500 rounded-full flex items-center justify-center mb-6"
+                        >
+                            <svg
+                                class="w-8 h-8 text-white"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                                ></path>
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </div>
+                        <h3
+                            class="text-2xl font-display font-bold text-gray-800 mb-3"
+                        >
+                            Emplacement Idéal
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Centre-ville Lorient (20 rue de Carnel), <strong
+                                >parking gratuit</strong
+                            > à 50m, accès bus lignes 2 & 5. Vos invités trouvent
+                            facilement et se garent sans stress.
+                        </p>
+                    </div>
+
+                    <div
+                        class="bg-gradient-to-br from-rose-50 to-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
+                    >
+                        <div
+                            class="w-14 h-14 bg-rose-500 rounded-full flex items-center justify-center mb-6"
+                        >
+                            <svg
+                                class="w-8 h-8 text-white"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"
+                                ></path>
+                            </svg>
+                        </div>
+                        <h3
+                            class="text-2xl font-display font-bold text-gray-800 mb-3"
+                        >
+                            Flexibilité Maximale
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Apportez votre décor perso, votre traiteur, vos
+                            boissons... Ou choisissez nos <strong
+                                >partenaires locaux</strong
+                            > de confiance. Nous nous adaptons à VOS envies et votre
+                            budget.
+                        </p>
+                    </div>
+
+                    <div
+                        class="bg-gradient-to-br from-rose-50 to-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
+                    >
+                        <div
+                            class="w-14 h-14 bg-rose-500 rounded-full flex items-center justify-center mb-6"
+                        >
+                            <svg
+                                class="w-8 h-8 text-white"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                                ></path>
+                            </svg>
+                        </div>
+                        <h3
+                            class="text-2xl font-display font-bold text-gray-800 mb-3"
+                        >
+                            Sécurité & Normes
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Salle <strong>aux normes ERP</strong> (établissement recevant
+                            du public), assurance RC pro, accès PMR, sorties de secours,
+                            extincteurs. Espace sécurisé pour enfants avec coins arrondis.
+                        </p>
+                    </div>
+
+                    <div
+                        class="bg-gradient-to-br from-rose-50 to-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
+                    >
+                        <div
+                            class="w-14 h-14 bg-rose-500 rounded-full flex items-center justify-center mb-6"
+                        >
+                            <svg
+                                class="w-8 h-8 text-white"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                ></path>
+                            </svg>
+                        </div>
+                        <h3
+                            class="text-2xl font-display font-bold text-gray-800 mb-3"
+                        >
+                            Expertise Locale
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            <strong>200+ événements réussis</strong> depuis notre
+                            ouverture. Anne-Laure et son équipe connaissent parfaitement
+                            Lorient et le Morbihan. Service personnalisé et bienveillant
+                            garanti.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Galerie Photos - SEO optimisé -->
+        <section class="py-20 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2
+                        class="text-4xl md:text-5xl font-display font-bold text-gris-texte mb-4"
+                    >
+                        Nos Événements en Images
+                    </h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">
+                        Découvrez notre <strong>salle transformée</strong> pour anniversaires,
+                        baby showers, EVJF... Chaque décor est unique !
+                    </p>
+                </div>
+
+                <div
+                    class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[200px]"
+                >
+                    <div
+                        class="relative group overflow-hidden rounded-xl col-span-2 row-span-2 shadow-lg"
+                    >
+                        <Image
+                            src={atelier1}
+                            alt="Anniversaire enfant 6 ans Lorient - Décoration licorne Le Monde de Camilou"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6"
+                        >
+                            <div class="text-center px-4">
+                                <span
+                                    class="text-white font-display font-bold text-xl block mb-1"
+                                    >Anniversaire Sirine - 6 ans</span
+                                >
+                                <span class="text-white/90 text-sm"
+                                    >Thème Licorne · 25 enfants</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="relative group overflow-hidden rounded-xl shadow-lg"
+                    >
+                        <Image
+                            src={atelier2}
+                            alt="Baby Shower Lorient - Décoration pastel rose et blanc"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4"
+                        >
+                            <span
+                                class="text-white font-display font-bold text-center px-4"
+                                >Baby Shower<br /><span
+                                    class="text-sm font-normal"
+                                    >Déco pastel 15 pers.</span
+                                ></span
+                            >
+                        </div>
+                    </div>
+                    <div
+                        class="relative group overflow-hidden rounded-xl row-span-2 shadow-lg"
+                    >
+                        <Image
+                            src={atelier3}
+                            alt="EVJF Lorient - Enterrement vie jeune fille décoration rose paillettes"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6"
+                        >
+                            <div class="text-center px-4">
+                                <span
+                                    class="text-white font-display font-bold block mb-1"
+                                    >EVJF Sophie</span
+                                >
+                                <span class="text-white/90 text-sm"
+                                    >Rose & Paillettes · 18 copines</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="relative group overflow-hidden rounded-xl shadow-lg"
+                    >
+                        <Image
+                            src={atelier4}
+                            alt="Atelier créatif enfants Lorient - Activités manuelles anniversaire"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4"
+                        >
+                            <span
+                                class="text-white font-display font-bold text-center px-4"
+                                >Atelier Créatif<br /><span
+                                    class="text-sm font-normal"
+                                    >Peinture & DIY</span
+                                ></span
+                            >
+                        </div>
+                    </div>
+                    <div
+                        class="relative group overflow-hidden rounded-xl bg-gradient-to-br from-rose-400 via-rose-500 to-coral-500 md:col-span-2 flex items-center justify-center p-8 text-center text-white shadow-lg hover:shadow-xl transition-shadow"
+                    >
+                        <div>
+                            <p class="font-display font-bold text-3xl mb-3">
+                                Votre événement sera le prochain !
+                            </p>
+                            <p class="text-lg opacity-95 mb-6">
+                                Réservez dès maintenant pour créer vos souvenirs
+                                inoubliables
+                            </p>
+                            <a
+                                href="#devis"
+                                class="inline-block bg-white text-rose-600 px-8 py-3 rounded-full font-bold hover:bg-gray-50 transition-colors"
+                            >
+                                Je réserve ma date
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="text-center text-gray-500 mt-8 text-sm">
+                    📸 Photos avec accord des clients · Suivez nos actualités
+                    sur <a
+                        href="https://www.instagram.com/le.monde.de.camilou"
+                        class="text-rose-500 hover:underline font-semibold"
+                        target="_blank"
+                        rel="noopener">Instagram @le.monde.de.camilou</a
+                    >
+                </p>
+            </div>
+        </section>
+
+        <!-- FAQ - SEO optimisé avec questions longue traîne -->
+        <section
+            class="py-20 bg-white"
+            itemscope
+            itemtype="https://schema.org/FAQPage"
+        >
+            <div class="container mx-auto px-4 max-w-4xl">
+                <div class="text-center mb-12">
+                    <h2
+                        class="text-4xl md:text-5xl font-display font-bold text-gris-texte mb-4"
+                    >
+                        Questions Fréquentes
+                    </h2>
+                    <p class="text-gray-600">
+                        Tout ce que vous devez savoir sur la <strong
+                            >location de salle événementielle</strong
+                        > au Monde de Camilou
+                    </p>
+                </div>
+
+                <div class="space-y-4">
+                    {
+                        faqs.map((faq) => (
+                            <div
+                                itemscope
+                                itemprop="mainEntity"
+                                itemtype="https://schema.org/Question"
+                            >
+                                <FAQItem
+                                    question={faq.question}
+                                    answer={faq.answer}
+                                />
+                            </div>
+                        ))
+                    }
+                </div>
+
+                <div
+                    class="mt-12 bg-rose-50 border-2 border-rose-200 rounded-2xl p-8 text-center"
+                >
+                    <h3
+                        class="text-2xl font-display font-bold text-gray-800 mb-3"
+                    >
+                        Vous avez une autre question ?
+                    </h3>
+                    <p class="text-gray-600 mb-6">
+                        Notre équipe vous répond <strong>en moins de 2h</strong> en
+                        semaine
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a
+                            href="tel:+33618910216"
+                            class="inline-flex items-center justify-center gap-2 bg-gradient-cta text-white px-8 py-4 rounded-full font-bold hover:scale-105 transition-transform"
+                        >
+                            <svg
+                                class="w-5 h-5"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                            >
+                                <path
+                                    d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+                                ></path>
+                            </svg>
+                            06 18 91 02 16
+                        </a>
+                        <a
+                            href="mailto:mallamaci.annelaure@gmail.com"
+                            class="inline-flex items-center justify-center gap-2 bg-white border-2 border-rose-300 text-rose-600 px-8 py-4 rounded-full font-semibold hover:bg-rose-50 transition-colors"
+                        >
+                            <svg
+                                class="w-5 h-5"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                                ></path>
+                            </svg>
+                            Email
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NOUVELLE SECTION : Témoignages clients -->
+        <section class="py-20 bg-gradient-to-b from-gray-50 to-white">
+            <div class="container mx-auto px-4">
+                <h2
+                    class="text-4xl md:text-5xl font-display font-bold text-center text-gris-texte mb-4"
+                >
+                    Ce Que Disent Nos Clients
+                </h2>
+                <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+                    Plus de <strong>200 événements organisés</strong> à Lorient depuis
+                    2022 · Note moyenne <strong>4.9/5</strong> sur Google
+                </p>
+
+                <div
+                    class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto"
+                >
+                    <div
+                        class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-rose-400"
+                    >
+                        <div class="flex items-center mb-4">
+                            <div class="flex text-yellow-400 text-xl">
+                                ★★★★★
+                            </div>
+                            <span class="ml-3 text-sm text-gray-500"
+                                >Il y a 2 semaines</span
+                            >
+                        </div>
+                        <p class="text-gray-700 italic leading-relaxed mb-6">
+                            "Parfait pour l'anniversaire de ma fille de 7 ans !
+                            Anne-Laure a géré l'animation, la déco licorne était
+                            magnifique. Les 20 enfants ont adoré. Nous, on a
+                            juste profité. <strong
+                                >Je recommande à 200% !</strong
+                            >"
+                        </p>
+                        <div>
+                            <p class="font-bold text-gray-800">Sarah M.</p>
+                            <p class="text-sm text-gray-500">
+                                Anniversaire enfant - Lorient
+                            </p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-rose-400"
+                    >
+                        <div class="flex items-center mb-4">
+                            <div class="flex text-yellow-400 text-xl">
+                                ★★★★★
+                            </div>
+                            <span class="ml-3 text-sm text-gray-500"
+                                >Il y a 1 mois</span
+                            >
+                        </div>
+                        <p class="text-gray-700 italic leading-relaxed mb-6">
+                            "Notre baby shower était parfaite ! Décoration
+                            pastel de rêve, buffet délicieux, animations sympas.
+                            L'équipe est adorable et professionnelle. <strong
+                                >Rapport qualité-prix imbattable.</strong
+                            >"
+                        </p>
+                        <div>
+                            <p class="font-bold text-gray-800">
+                                Camille & Thomas
+                            </p>
+                            <p class="text-sm text-gray-500">
+                                Baby Shower - Lorient
+                            </p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-rose-400"
+                    >
+                        <div class="flex items-center mb-4">
+                            <div class="flex text-yellow-400 text-xl">
+                                ★★★★★
+                            </div>
+                            <span class="ml-3 text-sm text-gray-500"
+                                >Il y a 3 semaines</span
+                            >
+                        </div>
+                        <p class="text-gray-700 italic leading-relaxed mb-6">
+                            "EVJF au top ! 16 copines, déco rose paillettes,
+                            cocktails, blind test... On a ri toute la soirée. <strong
+                                >Privatisation totale = zéro stress.</strong
+                            > Merci Le Monde de Camilou !"
+                        </p>
+                        <div>
+                            <p class="font-bold text-gray-800">Laura P.</p>
+                            <p class="text-sm text-gray-500">EVJF - Lorient</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mt-12">
+                    <a
+                        href="https://www.google.com/search?q=le+monde+de+camilou+lorient"
+                        target="_blank"
+                        rel="noopener"
+                        class="inline-flex items-center gap-2 text-rose-600 font-semibold hover:text-rose-700 transition-colors"
+                    >
+                        Lire tous les avis Google
+                        <svg
+                            class="w-5 h-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Final - Optimisé conversion -->
+        <section
+            class="py-24 bg-gradient-to-br from-rose-400 via-rose-500 to-coral-500 text-white text-center relative overflow-hidden"
+            id="devis"
+        >
+            <div
+                class="absolute inset-0 bg-[url('/images/pattern.svg')] opacity-10"
+            >
+            </div>
+
+            <!-- Formes décoratives animées -->
+            <div
+                class="absolute top-10 left-10 w-40 h-40 bg-white/10 rounded-full blur-3xl animate-pulse"
+            >
+            </div>
+            <div
+                class="absolute bottom-10 right-10 w-60 h-60 bg-white/10 rounded-full blur-3xl animate-pulse delay-1000"
+            >
+            </div>
+
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="max-w-3xl mx-auto">
+                    <h2
+                        class="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6 leading-tight"
+                    >
+                        Réservez Votre Date Maintenant !
+                    </h2>
+                    <p
+                        class="text-xl md:text-2xl mb-4 text-white/95 leading-relaxed"
+                    >
+                        <strong>Devis gratuit personnalisé</strong> sous 24h · Réponse
+                        garantie · Sans engagement
+                    </p>
+                    <p class="text-lg mb-10 text-white/90">
+                        ⚡ Les <strong>week-ends de mars à juin</strong> se réservent
+                        vite ! Ne tardez pas pour votre événement 2025.
+                    </p>
+
+                    <div
+                        class="flex flex-col sm:flex-row items-center justify-center gap-6 mb-8"
+                    >
+                        <a
+                            href="tel:+33618910216"
+                            class="bg-white text-rose-600 px-12 py-5 rounded-full font-bold text-xl hover:bg-gray-50 hover:scale-105 hover:shadow-2xl transition-all duration-300 w-full sm:w-auto flex items-center justify-center gap-3"
+                        >
+                            <svg
+                                class="w-6 h-6"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                            >
+                                <path
+                                    d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+                                ></path>
+                            </svg>
+                            06 18 91 02 16
+                        </a>
+                        <a
+                            href="/contact?type=devis-evenement"
+                            class="bg-transparent border-3 border-white text-white px-12 py-5 rounded-full font-bold text-xl hover:bg-white/10 hover:scale-105 transition-all duration-300 w-full sm:w-auto"
+                        >
+                            Formulaire devis →
+                        </a>
+                    </div>
+
+                    <div
+                        class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 max-w-2xl mx-auto"
+                    >
+                        <p class="text-white/95 text-sm md:text-base">
+                            <strong class="block mb-2 text-lg"
+                                >🎯 Ouvert 7j/7 sur réservation</strong
+                            >
+                            📍 20 rue de Carnel, 56100 Lorient · 🅿️ Parking gratuit<br
+                            />
+                            📧 <a
+                                href="mailto:mallamaci.annelaure@gmail.com"
+                                class="underline hover:no-underline"
+                                >mallamaci.annelaure@gmail.com</a
+                            ><br />
+                            📱 Instagram : <a
+                                href="https://www.instagram.com/le.monde.de.camilou"
+                                target="_blank"
+                                rel="noopener"
+                                class="underline hover:no-underline"
+                                >@le.monde.de.camilou</a
+                            >
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mobile FAB (Fixed Action Button) - Version améliorée -->
+        <div class="fixed bottom-6 right-6 lg:hidden z-50 flex flex-col gap-3">
+            <a
+                href="tel:+33618910216"
+                class="block bg-green-500 text-white p-4 rounded-full font-bold shadow-2xl hover:scale-110 transition-transform animate-bounce"
+                aria-label="Appeler maintenant"
+            >
+                <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                        d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+                    ></path>
+                </svg>
+            </a>
+            <a
+                href="#devis"
+                class="block bg-rose-500 text-white px-5 py-3 rounded-full font-bold shadow-2xl hover:scale-105 transition-transform text-center text-sm"
+            >
+                Devis Gratuit
+            </a>
+        </div>
+    </main>
+
+    <Footer />
+</Layout>
