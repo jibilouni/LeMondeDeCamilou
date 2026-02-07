@@ -161,10 +161,13 @@ const isLinkActive = (path: string) => {
     <!-- Mobile Menu Overlay -->
     <div
         id="mobile-menu"
-        class="fixed inset-0 bg-white/98 backdrop-blur-lg z-[100] lg:hidden opacity-0 invisible transition-all duration-300 overflow-y-auto"
+        class="fixed top-0 left-0 right-0 bottom-0 bg-white z-[9999] lg:hidden translate-y-[-100%] transition-transform duration-300 ease-in-out"
     >
-        <div class="container mx-auto px-4 py-6">
-            <div class="flex justify-between items-center mb-8 h-20">
+        <div class="h-full flex flex-col">
+            <!-- Header du menu mobile -->
+            <div
+                class="flex justify-between items-center px-6 py-6 border-b border-rose-100"
+            >
                 <span
                     class="text-2xl font-display font-bold bg-gradient-to-r from-rose-poudre to-corail-warmth bg-clip-text text-transparent"
                 >
@@ -190,57 +193,60 @@ const isLinkActive = (path: string) => {
                 </button>
             </div>
 
-            <nav class="flex flex-col gap-2">
-                <a
-                    href="/"
-                    class={`text-xl font-medium p-4 rounded-xl transition-all ${pathname === "/" ? "bg-rose-50 text-rose-500" : "text-gris-texte hover:bg-gray-50"}`}
-                >
-                    Accueil
-                </a>
-                <a
-                    href="/evenements"
-                    class={`text-xl font-medium p-4 rounded-xl transition-all ${pathname === "/evenements" ? "bg-rose-50 text-rose-500" : "text-gris-texte hover:bg-gray-50"}`}
-                >
-                    Événements
-                </a>
-                <a
-                    href="/services"
-                    class={`text-xl font-medium p-4 rounded-xl transition-all ${pathname === "/services" ? "bg-rose-50 text-rose-500" : "text-gris-texte hover:bg-gray-50"}`}
-                >
-                    Services Bien-être
-                </a>
-                <a
-                    href="/blog"
-                    class={`text-xl font-medium p-4 rounded-xl transition-all ${pathname === "/blog" ? "bg-rose-50 text-rose-500" : "text-gris-texte hover:bg-gray-50"}`}
-                >
-                    Blog
-                </a>
-                <a
-                    href="/contact"
-                    class={`text-xl font-medium p-4 rounded-xl transition-all ${pathname === "/contact" ? "bg-rose-50 text-rose-500" : "text-gris-texte hover:bg-gray-50"}`}
-                >
-                    Contact
-                </a>
-
-                <a
-                    href="/contact?type=devis"
-                    class="mt-6 bg-gradient-cta text-white px-6 py-4 rounded-full font-semibold text-center hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 shadow-lg"
-                >
-                    <svg
-                        class="w-5 h-5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
+            <!-- Navigation links -->
+            <nav class="flex-1 overflow-y-auto px-6 py-8">
+                <div class="flex flex-col gap-3">
+                    <a
+                        href="/"
+                        class={`text-2xl font-medium p-5 rounded-xl transition-all ${pathname === "/" ? "bg-gradient-to-r from-rose-50 to-peche-light text-rose-600" : "text-gris-texte hover:bg-gray-50"}`}
                     >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                        ></path>
-                    </svg>
-                    Demander un devis
-                </a>
+                        🏠 Accueil
+                    </a>
+                    <a
+                        href="/evenements"
+                        class={`text-2xl font-medium p-5 rounded-xl transition-all ${pathname === "/evenements" ? "bg-gradient-to-r from-rose-50 to-peche-light text-rose-600" : "text-gris-texte hover:bg-gray-50"}`}
+                    >
+                        🎉 Événements
+                    </a>
+                    <a
+                        href="/services"
+                        class={`text-2xl font-medium p-5 rounded-xl transition-all ${pathname === "/services" ? "bg-gradient-to-r from-rose-50 to-peche-light text-rose-600" : "text-gris-texte hover:bg-gray-50"}`}
+                    >
+                        💆‍♀️ Services Bien-être
+                    </a>
+                    <a
+                        href="/blog"
+                        class={`text-2xl font-medium p-5 rounded-xl transition-all ${pathname === "/blog" ? "bg-gradient-to-r from-rose-50 to-peche-light text-rose-600" : "text-gris-texte hover:bg-gray-50"}`}
+                    >
+                        📝 Blog
+                    </a>
+                    <a
+                        href="/contact"
+                        class={`text-2xl font-medium p-5 rounded-xl transition-all ${pathname === "/contact" ? "bg-gradient-to-r from-rose-50 to-peche-light text-rose-600" : "text-gris-texte hover:bg-gray-50"}`}
+                    >
+                        📧 Contact
+                    </a>
+
+                    <a
+                        href="/contact?type=devis"
+                        class="mt-8 bg-gradient-cta text-white px-8 py-5 rounded-full font-bold text-xl text-center hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3 shadow-xl"
+                    >
+                        <svg
+                            class="w-6 h-6"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                            ></path>
+                        </svg>
+                        Réserver maintenant
+                    </a>
+                </div>
             </nav>
         </div>
     </div>
@@ -253,12 +259,14 @@ const isLinkActive = (path: string) => {
     const mobileMenu = document.getElementById("mobile-menu");
 
     mobileMenuBtn?.addEventListener("click", () => {
-        mobileMenu?.classList.remove("opacity-0", "invisible");
+        mobileMenu?.classList.remove("translate-y-[-100%]");
+        mobileMenu?.classList.add("translate-y-0");
         document.body.style.overflow = "hidden";
     });
 
     mobileMenuClose?.addEventListener("click", () => {
-        mobileMenu?.classList.add("opacity-0", "invisible");
+        mobileMenu?.classList.add("translate-y-[-100%]");
+        mobileMenu?.classList.remove("translate-y-0");
         document.body.style.overflow = "";
     });
 
@@ -266,7 +274,8 @@ const isLinkActive = (path: string) => {
     const mobileLinks = mobileMenu?.querySelectorAll("a");
     mobileLinks?.forEach((link) => {
         link.addEventListener("click", () => {
-            mobileMenu?.classList.add("opacity-0", "invisible");
+            mobileMenu?.classList.add("translate-y-[-100%]");
+            mobileMenu?.classList.remove("translate-y-0");
             document.body.style.overflow = "";
         });
     });
